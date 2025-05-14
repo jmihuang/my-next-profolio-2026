@@ -1,11 +1,15 @@
-"use server";
+"use client";
 import React from "react";
-import { getAllNews } from "@/lib/news";
 import DataTable from "@/components/data-table";
+import { Space } from "antd";
 
-export default async function DataIndex() {
-  const data = await getAllNews(); // 在這裡獲取數據
+export default function newListTable({ data }) {
   const columns = [
+    {
+      title: "key",
+      dataIndex: "key",
+      key: "key",
+    },
     {
       title: "標題",
       dataIndex: "title",
@@ -20,11 +24,12 @@ export default async function DataIndex() {
       title: "內容",
       dataIndex: "content",
       key: "content",
+      render: (text) => text.replace(/<[^>]*>/g, ""),
     },
     {
       title: "創建日期",
       dataIndex: "create_time",
-      key: "創建日期",
+      key: "create_time",
     },
     {
       title: "Action",
