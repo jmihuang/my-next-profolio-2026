@@ -8,6 +8,7 @@ export default async function DataIndex() {
   const dataWithKey = data.map((items, idx) => ({
     ...items,
     key: idx + 1,
+    id: items.id,
   }));
 
   return <NewListTable data={dataWithKey} />;

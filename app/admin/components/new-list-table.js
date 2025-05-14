@@ -36,8 +36,8 @@ export default function newListTable({ data }) {
       key: "action",
       render: (_, record) => (
         <Space size="middle">
-          <a href={`/edit/${record.key}`}>編輯</a>
-          <a href={`/delete/${record.key}`}>刪除</a>
+          <a href={`/edit/${record.id}`}>編輯</a>
+          <a href={`/delete/${record.id}`}>刪除</a>
         </Space>
       ),
     },
