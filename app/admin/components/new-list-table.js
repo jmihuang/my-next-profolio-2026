@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import DataTable from "@/components/data-table";
+import Image from "next/image";
 import { Space } from "antd";
 
 export default function newListTable({ data }) {
@@ -19,6 +20,11 @@ export default function newListTable({ data }) {
       title: "圖片",
       dataIndex: "image",
       key: "image",
+      render: (image) => (
+        <Space size="middle">
+          <Image src={`/${image}`} alt="image" width={60} height={60} />
+        </Space>
+      ),
     },
     {
       title: "內容",
