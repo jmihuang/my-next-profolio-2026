@@ -14,13 +14,13 @@ const items1 = ["1", "2", "3"].map((key) => ({
 }));
 const items2 = [
   {
-    key: "product",
+    key: "project",
     icon: <EllipsisOutlined />,
-    label: "產品",
+    label: "專案",
     children: [
       {
-        key: "/admin/product/create",
-        label: <Link href="/admin/products/create">新增產品</Link>,
+        key: "/admin/projects/create",
+        label: <Link href="/admin/projects/create">新增專案</Link>,
       },
     ],
   },

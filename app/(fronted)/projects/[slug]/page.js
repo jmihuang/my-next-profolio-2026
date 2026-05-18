@@ -30,7 +30,7 @@ async function Product({ params }) {
     <div className="product_detail">
       <div className="row">
         <div className="col s12 m6">
-          <Link href={`/products/${params.slug}/zoomImage`}>
+          <Link href={`/projects/${params.slug}/zoomImage`}>
             <div
               className="main-image"
               style={{
@@ -155,7 +155,7 @@ async function Product({ params }) {
         {[...Array(6)].map((_, index) => (
           <div className="product_item" key={index}>
             <div className="image-box image-hover">
-              <Link href="/product_detail" className="product-item-image">
+              <Link href="/projects" className="product-item-image">
                 <Image
                   className="responsive-img"
                   src="/bath-containers-plant-table.png"
@@ -187,7 +187,7 @@ async function Product({ params }) {
           <div className="index_shop_menu">
             <ul>
               <li>
-                <Link href="/product" className="h3">
+                <Link href="/projects" className="h3">
                   On Line
                 </Link>
                 <p className="h5">線上購買</p>
@@ -199,7 +199,7 @@ async function Product({ params }) {
                 <p className="h5">通路展示</p>
               </li>
             </ul>
-            <Link href="/product" className="narrow light-color">
+            <Link href="/projects" className="narrow light-color">
               <span>Shop here</span>
               <span className="right-line"></span>
             </Link>

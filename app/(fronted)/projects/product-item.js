@@ -3,7 +3,7 @@ function productItem({ alt, image, price, name, engName, capacity, slug }) {
   return (
     <div className="product_item">
       <div className="image-box image-hover">
-        <a className="product-item-image" href={`/products/${slug}`}>
+        <a className="product-item-image" href={`/projects/${slug}`}>
           <Image className="responsive-img" src={image} alt={alt} fill />
         </a>
         <div className="name_price info">
