@@ -1,4 +1,3 @@
-import ImageSlideshow from "@/components/slides/image-slideshow";
 import Image from "next/image";
 import Link from "next/link";
 import personalImg from "/app/assets/image/personal.jpg";
@@ -29,36 +28,42 @@ export default function Home() {
               <div>
                 <div className="mb-8 flex items-center gap-3 text-sm tracking-[0.2em] uppercase text-black/40">
                   <div className="w-16 h-px bg-[#5FA391]" />
-                  Digital Experience Designer
+                  Jamie Huang · Senior Product Designer
                 </div>
 
-                <h2 className="text-[56px] md:text-[88px] leading-[0.95] tracking-[-0.04em] font-light mb-8">
-                  Build
+                <h1 className="text-[56px] md:text-[88px] leading-[0.95] tracking-[-0.04em] font-light mb-8">
+                  Product
                   <br />
-                  meaningful
+                  thinking.
                   <br />
-                  digital
+                  UX/UI.
                   <br />
-                  experiences.
-                </h2>
+                  Frontend.
+                </h1>
 
                 <p className="max-w-xl text-black/60 text-lg leading-relaxed mb-12">
-                  結合 UI/UX、前端開發與 AI Workflow，
-                  將抽象想法轉化為真正可執行、可理解、可上線的產品體驗。
+                  具備 18+ 年數位產品設計與前端開發經驗，將模糊需求轉化為清楚的功能架構、
+                  使用者流程與可落地的產品體驗。
                 </p>
 
                 <div className="flex flex-wrap gap-5">
-                  <button className="group border border-black/10 px-8 py-4 rounded-full bg-[#111111] text-white hover:bg-[#5FA391] transition-all duration-500">
+                  <Link
+                    href="/projects"
+                    className="group border border-black/10 px-8 py-4 rounded-full bg-[#111111] text-white hover:bg-[#5FA391] transition-all duration-500"
+                  >
                     <span className="tracking-[0.15em] text-sm uppercase">
                       View Projects
                     </span>
-                  </button>
+                  </Link>
 
-                  <button className="group border border-black/10 px-8 py-4 rounded-full hover:border-[#5FA391] transition-all duration-500">
+                  <a
+                    href="mailto:jmispace@gmail.com"
+                    className="group border border-black/10 px-8 py-4 rounded-full hover:border-[#5FA391] transition-all duration-500"
+                  >
                     <span className="tracking-[0.15em] text-sm uppercase group-hover:text-[#5FA391]">
                       Let&apos;s Work Together
                     </span>
-                  </button>
+                  </a>
                 </div>
               </div>
 
@@ -79,13 +84,13 @@ export default function Home() {
 
                   <div className="absolute bottom-0 left-0 p-10 text-white">
                     <div className="text-sm tracking-[0.2em] uppercase mb-3 text-white/70">
-                      UI/UX ・ Front-end ・ AI
+                      UX/UI ・ Product Design ・ Frontend
                     </div>
 
                     <div className="text-3xl font-light leading-snug">
-                      Design with strategy.
+                      From product thinking
                       <br />
-                      Execute with precision.
+                      to working interfaces.
                     </div>
                   </div>
                 </div>
@@ -95,10 +100,10 @@ export default function Home() {
             {/* Bottom Info */}
             <div className="absolute bottom-10 left-0 w-full px-6 md:px-12">
               <div className="max-w-7xl mx-auto border-t border-black/10 pt-6 flex flex-wrap gap-10 text-sm text-black/50 tracking-wide">
-                <div>10+ Years Experience</div>
-                <div>UI/UX & Front-end</div>
-                <div>Design System</div>
-                <div>AI Assisted Workflow</div>
+                <div>18+ Years Experience</div>
+                <div>100+ Digital Projects</div>
+                <div>Product Discovery</div>
+                <div>UX/UI & Frontend</div>
               </div>
             </div>
           </section>
@@ -112,33 +117,33 @@ export default function Home() {
                 </div>
 
                 <h3 className="text-5xl md:text-7xl leading-[1.05] tracking-[-0.04em] font-light mb-10">
-                  More than
+                  From ambiguous
                   <br />
-                  just visual
+                  requirements to
                   <br />
-                  design.
+                  working products.
                 </h3>
               </div>
 
               <div>
                 <p className="text-black/65 text-lg leading-[2] mb-10">
-                  我擁有 UI/UX 與前端整合背景，曾參與電商、金融、品牌活動網站、
-                  後台系統與跨國協作專案。 擅長將設計、策略與技術整合，並透過 AI
-                  工具提升產品開發效率與內容產出。
+                  我曾參與 momo、Stanley Black & Decker、Microprogram 與長期 0→1
+                  產品專案，累積電商、B2C、管理後台、APP 與品牌網站經驗。從需求分析、
+                  UX Flow、Wireframe、UI 設計到 React／Vue 前端實作，皆能與 PM、工程師及利害關係人共同推進。
                 </p>
 
                 <div className="grid grid-cols-2 gap-10 border-t border-black/10 pt-10">
                   <div>
-                    <div className="text-5xl font-extralight mb-3">20+</div>
+                    <div className="text-5xl font-extralight mb-3">18+</div>
                     <div className="text-sm uppercase tracking-[0.15em] text-black/45">
-                      Projects
+                      Years in Digital Product
                     </div>
                   </div>
 
                   <div>
-                    <div className="text-5xl font-extralight mb-3">4+</div>
+                    <div className="text-5xl font-extralight mb-3">100+</div>
                     <div className="text-sm uppercase tracking-[0.15em] text-black/45">
-                      Industries
+                      Website & Digital Projects
                     </div>
                   </div>
                 </div>
@@ -155,7 +160,7 @@ export default function Home() {
                 </div>
 
                 <h3 className="text-5xl md:text-7xl tracking-[-0.04em] leading-[1.05] font-light max-w-4xl">
-                  Combining design thinking, development, and AI workflow.
+                  Product strategy, experience design, and frontend execution.
                 </h3>
               </div>
 
@@ -163,23 +168,23 @@ export default function Home() {
                 {[
                   {
                     no: "01",
-                    title: "Design + Development",
-                    desc: "同時理解設計與前端實作，降低設計與工程之間的溝通成本。",
+                    title: "Product Discovery",
+                    desc: "從需求訪談、功能架構到 User Flow，將模糊問題轉化為可討論、可執行的產品方案。",
                   },
                   {
                     no: "02",
-                    title: "Strategy Thinking",
-                    desc: "不只是畫面執行，而是從產品與使用者角度思考問題。",
+                    title: "UX/UI & Design Systems",
+                    desc: "以 Wireframe、Prototype、UI Components 與 Design System 建立一致且可擴展的體驗。",
                   },
                   {
                     no: "03",
-                    title: "AI Assisted Workflow",
-                    desc: "善於運用 AI 提升研究、設計、內容與開發效率。",
+                    title: "Frontend Execution",
+                    desc: "熟悉 React、TypeScript、Vue、Tailwind 與 API 串接，設計時同步考量技術可行性與落地成本。",
                   },
                   {
                     no: "04",
-                    title: "From Concept to Launch",
-                    desc: "能從規劃、設計到實作，完整推進專案。",
+                    title: "Cross-functional Collaboration",
+                    desc: "與 PM、RD 及利害關係人共同釐清需求、討論方案並推進專案，特別適合遠端與非同步協作。",
                   },
                 ].map((item) => (
                   <div
@@ -222,8 +227,8 @@ export default function Home() {
                 </div>
 
                 <p className="max-w-lg text-black/55 leading-loose text-lg">
-                  從品牌活動網站、Design System 到 Next.js 專案，
-                  每個作品都強調策略、體驗與實作整合。
+                  從大型 B2C 電商、設計系統到 0→1 APP，
+                  每個作品都呈現產品思考、使用者體驗與前端實作的整合。
                 </p>
               </div>
 
@@ -232,6 +237,7 @@ export default function Home() {
                   <div className="overflow-hidden rounded-[32px] border border-black/10 mb-6 bg-white">
                     <img
                       src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1200&auto=format&fit=crop"
+                      alt="momo Shopping Cart project preview"
                       className="w-full h-[520px] object-cover group-hover:scale-105 transition-all duration-700"
                     />
                   </div>
@@ -239,16 +245,16 @@ export default function Home() {
                   <div className="flex items-start justify-between gap-6">
                     <div>
                       <div className="text-sm uppercase tracking-[0.15em] text-black/40 mb-3">
-                        UI System / React
+                        Product / UX / Frontend
                       </div>
 
                       <h4 className="text-3xl font-light tracking-[-0.03em] mb-4">
-                        E-commerce Design System
+                        momo Shopping Cart
                       </h4>
 
                       <p className="text-black/55 leading-loose">
-                        建立可擴展的 UI Components 與 Design System，
-                        提升團隊協作與產品一致性。
+                        重新整理大型 B2C 電商購物車的功能與操作邏輯，
+                        以 Functional Map、Flow Chart、UI Flow 支援 RWD 與 React 開發。
                       </p>
                     </div>
 
@@ -260,6 +266,7 @@ export default function Home() {
                   <div className="overflow-hidden rounded-[32px] border border-black/10 mb-6 bg-white">
                     <img
                       src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop"
+                      alt="momoUI Design System project preview"
                       className="w-full h-[520px] object-cover group-hover:scale-105 transition-all duration-700"
                     />
                   </div>
@@ -267,15 +274,16 @@ export default function Home() {
                   <div className="flex items-start justify-between gap-6">
                     <div>
                       <div className="text-sm uppercase tracking-[0.15em] text-black/40 mb-3">
-                        AI Workflow / UX
+                        Design System / Frontend
                       </div>
 
                       <h4 className="text-3xl font-light tracking-[-0.03em] mb-4">
-                        AI Assisted Product Flow
+                        momoUI Design System
                       </h4>
 
                       <p className="text-black/55 leading-loose">
-                        透過 AI 工具加速產品研究、內容生成與 UX 規劃流程。
+                        參與 React、TypeScript、Tailwind、SCSS 與 Storybook 組件建置，
+                        兼顧元件一致性、維護彈性與產品使用情境。
                       </p>
                     </div>
 
@@ -315,7 +323,7 @@ export default function Home() {
               </h3>
 
               <p className="max-w-3xl mx-auto text-white/60 text-xl leading-loose">
-                我相信好的產品，不只是漂亮， 而是能被理解、被使用、被信任。
+                我相信好的產品不只是漂亮，而是能被理解、被使用、也能在真實的技術與商業限制中落地。
               </p>
             </div>
           </section>
@@ -334,21 +342,34 @@ export default function Home() {
               </h3>
 
               <p className="text-black/55 text-lg leading-loose mb-14 max-w-2xl mx-auto">
-                如果你正在打造有價值的產品、品牌或體驗， 我很樂意參與其中。
+                如果你正在打造產品、服務或新的數位體驗，我很樂意一起釐清問題、規劃並實現。
               </p>
 
               <div className="flex flex-wrap justify-center gap-5">
-                <button className="px-8 py-4 rounded-full bg-[#111111] text-white tracking-[0.15em] text-sm uppercase hover:bg-[#5FA391] transition-all duration-500">
+                <a
+                  href="mailto:jmispace@gmail.com"
+                  className="px-8 py-4 rounded-full bg-[#111111] text-white tracking-[0.15em] text-sm uppercase hover:bg-[#5FA391] transition-all duration-500"
+                >
                   Email
-                </button>
+                </a>
 
-                <button className="px-8 py-4 rounded-full border border-black/10 tracking-[0.15em] text-sm uppercase hover:border-[#5FA391] hover:text-[#5FA391] transition-all duration-500">
+                <a
+                  href="https://www.linkedin.com/in/jamie-huang-37597a140/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-8 py-4 rounded-full border border-black/10 tracking-[0.15em] text-sm uppercase hover:border-[#5FA391] hover:text-[#5FA391] transition-all duration-500"
+                >
                   LinkedIn
-                </button>
+                </a>
 
-                <button className="px-8 py-4 rounded-full border border-black/10 tracking-[0.15em] text-sm uppercase hover:border-[#5FA391] hover:text-[#5FA391] transition-all duration-500">
-                  Medium
-                </button>
+                <a
+                  href="https://www.uniudesign.com/works"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-8 py-4 rounded-full border border-black/10 tracking-[0.15em] text-sm uppercase hover:border-[#5FA391] hover:text-[#5FA391] transition-all duration-500"
+                >
+                  Portfolio
+                </a>
               </div>
             </div>
           </section>
