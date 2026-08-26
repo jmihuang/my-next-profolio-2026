@@ -1,214 +1,70 @@
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { getProduct } from "@/lib/catalogue";
 import { notFound } from "next/navigation";
+import { getProject, PROJECTS } from "../project-data";
 
-export async function generateMetadata({ params }) {
-  const product = await getProduct(params.slug);
+export function generateStaticParams() {
+  return PROJECTS.map((project) => ({ slug: project.slug }));
+}
 
-  if (!product) {
-    notFound();
-    return;
-  }
-
+export function generateMetadata({ params }) {
+  const project = getProject(params.slug);
+  if (!project) return {};
   return {
-    title: product.name,
-    description: product.desc,
+    title: `${project.title} | Jamie Huang`,
+    description: project.summary,
   };
 }
 
-async function Product({ params }) {
-  const product = await getProduct(params.slug);
-  //找不到資料頁面
-  if (!product) {
-    notFound();
-    return;
-  }
-  product.desc = product.desc.replace(/\n/g, "<br/>");
+function CartMockup() {
   return (
-    <div className="product_detail">
-      <div className="row">
-        <div className="col s12 m6">
-          <Link href={`/projects/${params.slug}/zoomImage`}>
-            <div
-              className="main-image"
-              style={{
-                backgroundImage: `url(${product.image})`,
-              }}
-            ></div>
-          </Link>
-          <div className="image-list">
-            {[product.image, product.image, product.image, product.image].map(
-              (url, index) => (
-                <div
-                  className={`image-item ${index === 4 ? "active" : ""}`}
-                  key={index}
-                >
-                  <a className="img-square" data-url={url}>
-                    <Image
-                      className="responsive-img"
-                      src={url}
-                      alt={product.alt}
-                      width={100}
-                      height={100}
-                    />
-                  </a>
-                </div>
-              )
-            )}
-          </div>
-        </div>
-        <div className="col s12 m6">
-          <div className="product-infor">
-            <div className="section-block">
-              <h5 className="name">{product.name}</h5>
-              <h5 className="en_name">{product.engName}</h5>
-              <h4 className="price">ntd.{product.price}</h4>
-            </div>
-            <div className="section-block">
-              <div className="size">{product.capacity}</div>
-              <small className="comment"> </small>
-            </div>
-            <div>
-              <div className="number-adjust" id="number-adjust">
-                <span className="control minus">
-                  <i className="tiny material-icons">remove</i>
-                </span>
-                <span className="number" id="number">
-                  1
-                </span>
-                <span className="control add">
-                  <i className="tiny material-icons">add</i>
-                </span>
-              </div>
-              <div className="custom-select" style={{ width: "200px" }}>
-                <div className="select-wrapper">
-                  <input
-                    className="select-dropdown dropdown-trigger"
-                    type="text"
-                    readOnly
-                    data-target="select-options"
-                  />
-                  <ul
-                    id="select-options"
-                    className="dropdown-content select-dropdown"
-                    tabIndex="0"
-                  >
-                    {["玫瑰香味", "扶桑花香味", "茉莉香味"].map(
-                      (flavor, index) => (
-                        <li
-                          key={index}
-                          id={`select-options-${index}`}
-                          tabIndex="0"
-                          className={index === 0 ? "selected" : ""}
-                        >
-                          <span>{flavor}</span>
-                        </li>
-                      )
-                    )}
-                  </ul>
-                  <svg
-                    className="caret"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    width="24"
-                  >
-                    <path d="M7 10l5 5 5-5z"></path>
-                    <path d="M0 0h24v24H0z" fill="none"></path>
-                  </svg>
-                  <select tabIndex="-1">
-                    <option value="0">玫瑰香味</option>
-                    <option value="1">扶桑花香味</option>
-                    <option value="2">茉莉香味</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div className="section-block">
-              <div className="inquery-btn">
-                <button className="btn" id="submit">
-                  ADD CART
-                </button>
-              </div>
-              <div className="inquery-btn">
-                <button className="btn" id="submit">
-                  BUY NOW
-                </button>
-              </div>
-            </div>
-            <div className="body">
-              <div
-                className="section-block"
-                dangerouslySetInnerHTML={{
-                  __html: product.desc,
-                }}
-              />
-            </div>
-          </div>
+    <div className="aspect-[16/10] rounded-[28px] bg-[#f3f5fa] p-8 md:p-14 text-[#202945]">
+      <div className="max-w-4xl mx-auto h-full rounded-2xl border border-[#202945]/10 bg-white p-6 md:p-9 shadow-2xl shadow-[#202945]/10">
+        <div className="flex justify-between border-b border-[#202945]/10 pb-5 text-xs font-medium"><span>momo</span><span>Shopping Cart</span></div>
+        <div className="grid grid-cols-[1.5fr_0.7fr] gap-5 pt-7 h-[calc(100%-40px)]">
+          <div className="space-y-3">{[1, 2, 3].map((item) => <div key={item} className="h-[28%] rounded-xl border border-[#202945]/10 p-4 flex gap-4"><div className="w-14 rounded-lg bg-[#dce4f4]" /><div className="flex-1 pt-2 space-y-3"><div className="h-2 w-3/4 rounded bg-[#202945]/20" /><div className="h-2 w-1/3 rounded bg-[#202945]/10" /></div></div>)}</div>
+          <div className="rounded-xl bg-[#202945] p-5"><div className="h-2 w-2/3 rounded bg-white/40" /><div className="mt-9 h-2 w-full rounded bg-white/15" /><div className="mt-3 h-2 w-4/5 rounded bg-white/15" /><div className="mt-10 rounded-lg bg-[#ff5a73] py-3 text-center text-[10px] tracking-[0.16em] text-white">CHECKOUT</div></div>
         </div>
       </div>
-      <h5>Description</h5>
-      <div className="body">...</div>
-      <h5>You May Also Like</h5>
-      <div className="products_items">
-        {[...Array(6)].map((_, index) => (
-          <div className="product_item" key={index}>
-            <div className="image-box image-hover">
-              <Link href="/projects" className="product-item-image">
-                <Image
-                  className="responsive-img"
-                  src="/bath-containers-plant-table.png"
-                  alt="自然淨化,環境清潔"
-                  width={200}
-                  height={200}
-                />
-              </Link>
-              <div className="number">{index + 1}</div>
-              <div className="name_price info">
-                <Link href="#" className="name">
-                  <b>介觀植礦防護液</b>
-                </Link>
-                <b className="price">ntd.{product.price}</b>
-              </div>
-              <div className="en info">
-                <small className="en_name">
-                  Natural All-Purpose Protective Spray
-                </small>
-                <small className="ml">50ml / 1.69fl.oz</small>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <section className="wow fadeInUp index_shop_bg index-shop-online">
-        <div className="index_shop_left">
-          <div className="index_shop_menu">
-            <ul>
-              <li>
-                <Link href="/projects" className="h3">
-                  On Line
-                </Link>
-                <p className="h5">線上購買</p>
-              </li>
-              <li>
-                <Link href="/stories" className="h3">
-                  Stores
-                </Link>
-                <p className="h5">通路展示</p>
-              </li>
-            </ul>
-            <Link href="/projects" className="narrow light-color">
-              <span>Shop here</span>
-              <span className="right-line"></span>
-            </Link>
-          </div>
-        </div>
-        <div className="index_shop_right"></div>
-      </section>
     </div>
   );
 }
 
-export default Product;
+export default function ProjectDetailPage({ params }) {
+  const project = getProject(params.slug);
+  if (!project) notFound();
+
+  return (
+    <div className="bg-[#F7F6F2] text-[#111111] min-h-screen overflow-hidden relative">
+      <div className="fixed inset-0 opacity-[0.035] pointer-events-none"><div className="absolute inset-0" style={{ backgroundImage: "linear-gradient(to right, #111 1px, transparent 1px), linear-gradient(to bottom, #111 1px, transparent 1px)", backgroundSize: "72px 72px" }} /></div>
+      <section className="relative pt-[180px] pb-28 px-6 md:px-12">
+        <div className="max-w-[1400px] mx-auto">
+          <Link href="/projects" className="inline-flex items-center gap-3 text-sm tracking-[0.16em] uppercase text-black/45 hover:text-[#5FA391] transition-colors mb-16">← All Projects</Link>
+          <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-14 lg:gap-24 items-end mb-20">
+            <div>
+              <div className="text-sm tracking-[0.22em] uppercase text-[#5FA391] mb-6">{project.eyebrow}</div>
+              <h1 className="text-5xl md:text-8xl tracking-[-0.06em] leading-[0.95] font-light mb-8">{project.title}</h1>
+              <p className="text-xl leading-[1.8] text-black/60">{project.summary}</p>
+            </div>
+            <div className="border-t border-black/10 pt-7">
+              <div className="text-sm tracking-[0.18em] uppercase text-black/35 mb-3">Role</div>
+              <p className="text-2xl font-light leading-relaxed">{project.role}</p>
+            </div>
+          </div>
+
+          {project.mockup === "cart" ? <CartMockup /> : <div className="relative overflow-hidden rounded-[32px] border border-black/10 bg-white"><Image src={project.image} alt={`${project.title} project cover`} width={1800} height={1200} className="w-full h-auto" priority /></div>}
+
+          <div className="grid lg:grid-cols-[0.7fr_1.3fr] gap-14 lg:gap-24 py-28 border-b border-black/10">
+            <div><div className="text-sm tracking-[0.22em] uppercase text-black/35">Tools & Focus</div></div>
+            <div>
+              <div className="flex flex-wrap gap-3 mb-12">{project.technologies.map((technology) => <span key={technology} className="px-4 py-2.5 rounded-full border border-black/10 text-sm tracking-[0.08em] text-black/60">{technology}</span>)}</div>
+              <div className="grid md:grid-cols-3 gap-5">{project.notes.map((note, index) => <div key={note} className="border-t border-black/10 pt-5"><div className="text-[#5FA391] text-sm mb-3">0{index + 1}</div><p className="text-lg leading-relaxed">{note}</p></div>)}</div>
+            </div>
+          </div>
+
+          {project.gallery.length ? <section className="py-28"><div className="mb-14"><div className="text-sm tracking-[0.22em] uppercase text-black/35 mb-5">Gallery</div><h2 className="text-4xl md:text-6xl tracking-[-0.05em] font-light">Selected screens.</h2></div><div className="grid md:grid-cols-2 gap-8">{project.gallery.map((image, index) => <div key={image.src} className={`relative overflow-hidden rounded-[28px] border border-black/10 bg-white ${index === 0 && project.gallery.length > 1 ? "md:col-span-2" : ""}`}><Image src={image.src} alt={image.alt} width={1800} height={1200} className="w-full h-auto" /></div>)}</div></section> : <section className="py-28"><div className="rounded-[28px] border border-black/10 bg-white p-10 md:p-16"><div className="text-sm tracking-[0.22em] uppercase text-black/35 mb-5">Gallery</div><h2 className="text-4xl md:text-5xl tracking-[-0.05em] font-light mb-5">Confidential product interface.</h2><p className="max-w-2xl text-black/55 text-lg leading-[1.9]">基於專案保密考量，此案例先以流程與技術摘要呈現；後續可視公開範圍補上裁切或模糊化畫面。</p></div></section>}
+        </div>
+      </section>
+    </div>
+  );
+}
