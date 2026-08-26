@@ -211,7 +211,7 @@ export default function Home() {
           </section>
 
           {/* Featured Project */}
-          <section className="py-32 px-6 md:px-12">
+          <section id="contact" className="py-32 px-6 md:px-12">
             <div className="max-w-7xl mx-auto">
               <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-10">
                 <div>

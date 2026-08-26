@@ -10,10 +10,9 @@ import styles from "./main-header.module.css";
 import logoImg from "@/app/assets/image/logo.png";
 
 const MOBILE_LINKS = [
-  { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
   { href: "/experience", label: "Experience" },
-  { href: "/contacts", label: "Contact" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 const MainHeader = () => {
