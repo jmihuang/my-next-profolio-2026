@@ -54,7 +54,7 @@ function ProjectVisual({ project }) {
       alt={`${project.title} project preview`}
       fill
       sizes="(max-width: 1024px) 100vw, 50vw"
-      className="object-cover object-top transition-all duration-[1600ms] ease-out group-hover:scale-[1.035] group-hover:opacity-55"
+      className={`${project.imageFit === "contain" ? "object-contain" : "object-cover object-top"} transition-all duration-[1600ms] ease-out group-hover:scale-[1.035] group-hover:opacity-55`}
     />
   );
 }
@@ -96,14 +96,14 @@ export default function ProjectGallery({ projects, categories }) {
               className="block"
               aria-label={`View ${project.title} project`}
             >
-              <div className="relative aspect-[4/3] overflow-hidden bg-[#ece9e4] mb-7">
+              <div className={`relative aspect-[4/3] ${project.coverBackground || "bg-[#ece9e4]"} mb-7 overflow-hidden`}>
                 <ProjectVisual project={project} />
                 <div
                   aria-hidden="true"
-                  className="absolute inset-0 pointer-events-none bg-[#5FA391]/65 mix-blend-screen [clip-path:inset(0_100%_0_0)] group-hover:[clip-path:inset(0_0_0_0)] transition-[clip-path] duration-700 ease-[cubic-bezier(0.77,0,0.18,1)]"
+                  className="absolute inset-0 z-20 pointer-events-none bg-[#5FA391]/65 mix-blend-screen [clip-path:inset(0_100%_0_0)] group-hover:[clip-path:inset(0_0_0_0)] transition-[clip-path] duration-700 ease-[cubic-bezier(0.77,0,0.18,1)]"
                 />
-                <div className="absolute inset-0 pointer-events-none bg-[#f2fbf7]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute inset-x-0 bottom-0 pointer-events-none flex items-end gap-4 overflow-hidden px-6 md:px-9">
+                <div className="absolute inset-0 z-20 pointer-events-none bg-[#f2fbf7]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-x-0 bottom-0 z-30 pointer-events-none flex items-end gap-4 overflow-hidden px-6 md:px-9">
                   <div className="min-w-0 flex-1 [clip-path:inset(0_100%_0_0)] group-hover:[clip-path:inset(0_0_0_0)] transition-[clip-path] duration-700 ease-[cubic-bezier(0.77,0,0.18,1)]">
                     <span className="block translate-y-[110%] group-hover:translate-y-[12%] font-serif text-[3.8rem] sm:text-[5.5rem] md:text-[clamp(5.5rem,8vw,11rem)] leading-[0.72] tracking-[-0.075em] text-transparent [-webkit-text-stroke:1.5px_#198f73] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
                       Detail

@@ -10,7 +10,7 @@ const EXPERIENCES = [
     highlights: [
       "Camping Daddy APP · Product discovery, UX/UI, Vue 2 & API integration",
       "Node 人脈管理 APP · Functional map, UI flow & UX/UI design",
-      "新竹清潔醫生後台管理系統 · 針對既有後台管理系統進行 UI/UX 重新規劃",
+      "清潔公司排班管理後台後台管理系統 · 針對既有後台管理系統進行 UI/UX 重新規劃",
       "蒲田室內設計、華南銀行 · Website planning, interaction design & RWD implementation",
     ],
   },
