@@ -4,11 +4,14 @@ import { Editor } from "@tinymce/tinymce-react";
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 const TinyMCEEditor = ({ onEditorChange, initialValue = "", editorId = "news_form_content" }) => {
   const editorRef = useRef(null);
+  // The section editor updates its parent state on every edit. Keep TinyMCE's
+  // initial document stable so an IME composition is not replaced mid-input.
+  const initialContentRef = useRef(initialValue);
   return (
     <>
       <Editor
         apiKey={apiKey}
-        initialValue={initialValue}
+        initialValue={initialContentRef.current}
         onInit={(_evt, editor) => (editorRef.current = editor)}
         onEditorChange={onEditorChange}
         id={editorId}

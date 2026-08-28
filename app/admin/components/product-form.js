@@ -98,7 +98,7 @@ export default function ProductForm({ product }) {
     <Form.Item label="特殊案例 Key" name="caseStudyKey"><Input placeholder="例如 cleaning-doctor；一般作品可留空" /></Form.Item>
     <Form.Item label="發布狀態" name="status"><Select options={[{ value: "published", label: "Published" }, { value: "draft", label: "Draft" }]} /></Form.Item>
     </div>
-    <div className={product && activeTab !== "content" ? "hidden" : ""}><ProductSectionsEditor sections={sections} onChange={setSections} /></div>
+    {(!product || activeTab === "content") ? <ProductSectionsEditor sections={sections} onChange={setSections} /> : null}
     <Form.Item><FormSubmit isSubmitting={pending} onReset={() => form.resetFields()} /></Form.Item>
   </Form>;
 }
