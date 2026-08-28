@@ -1,8 +1,12 @@
 import Link from "next/link";
 import ProjectGallery from "./project-gallery";
-import { PROJECT_CATEGORIES, PROJECTS } from "./project-data";
+import { getAllProducts, getProductCategories } from "@/lib/products";
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const [projects, categories] = await Promise.all([
+    getAllProducts(),
+    getProductCategories(),
+  ]);
   return (
     <div className="bg-[#F7F6F2] text-[#111111] min-h-screen overflow-hidden relative">
       <div className="fixed inset-0 opacity-[0.035] pointer-events-none">
@@ -33,7 +37,7 @@ export default function ProductsPage() {
             </div>
           </div>
 
-          <ProjectGallery projects={PROJECTS} categories={PROJECT_CATEGORIES} />
+          <ProjectGallery projects={projects} categories={categories} />
         </div>
       </section>
 

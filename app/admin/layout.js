@@ -19,6 +19,10 @@ const items2 = [
     label: "專案",
     children: [
       {
+        key: "/admin/projects",
+        label: <Link href="/admin/projects">作品列表</Link>,
+      },
+      {
         key: "/admin/projects/create",
         label: <Link href="/admin/projects/create">新增專案</Link>,
       },

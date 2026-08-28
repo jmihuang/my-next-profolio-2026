@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { profile } from "@/lib/profile";
 
 const EXPERIENCES = [
   {
@@ -153,13 +154,13 @@ export default function ExperiencePage() {
           </p>
           <div className="flex flex-wrap justify-center gap-5">
             <a
-              href="mailto:jmispace@gmail.com"
+              href={`mailto:${profile.email}`}
               className="inline-block px-10 py-5 rounded-full bg-white text-[#111111] tracking-[0.18em] text-sm uppercase hover:bg-[#5FA391] hover:text-white transition-all duration-500"
             >
               Email Me
             </a>
             <a
-              href="https://www.linkedin.com/in/jamie-huang-37597a140/"
+              href={profile.linkedin}
               target="_blank"
               rel="noreferrer"
               className="inline-block px-10 py-5 rounded-full border border-white/30 text-white tracking-[0.18em] text-sm uppercase hover:border-[#5FA391] hover:bg-[#5FA391] transition-all duration-500"

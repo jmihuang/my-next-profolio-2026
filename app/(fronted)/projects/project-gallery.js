@@ -4,50 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-function CartMockup() {
-  return (
-    <div className="h-full bg-[#f3f5fa] p-7 md:p-10 text-[#202945]">
-      <div className="flex items-center justify-between border-b border-[#202945]/10 pb-5 text-xs font-medium">
-        <span>momo</span>
-        <span>Shopping Cart</span>
-      </div>
-      <div className="grid grid-cols-[1.35fr_0.65fr] gap-4 pt-7 h-[calc(100%-42px)]">
-        <div className="space-y-3">
-          {["Cart items", "Delivery", "Payment"].map((label, index) => (
-            <div
-              key={label}
-              className="rounded-xl border border-[#202945]/10 bg-white p-4"
-            >
-              <div className="flex gap-3">
-                <div
-                  className={`h-10 w-10 rounded-lg ${index === 1 ? "bg-[#ff5a73]" : "bg-[#dce4f4]"}`}
-                />
-                <div className="flex-1 space-y-2 pt-1">
-                  <div className="h-2 w-2/3 rounded bg-[#202945]/20" />
-                  <div className="h-2 w-1/3 rounded bg-[#202945]/10" />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="rounded-xl bg-[#202945] p-4 text-white">
-          <div className="h-2 w-2/3 rounded bg-white/40" />
-          <div className="mt-8 h-2 w-full rounded bg-white/15" />
-          <div className="mt-3 h-2 w-4/5 rounded bg-white/15" />
-          <div className="mt-auto pt-12">
-            <div className="rounded-lg bg-[#ff5a73] py-3 text-center text-[10px] tracking-[0.12em]">
-              CHECKOUT
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function ProjectVisual({ project }) {
-  if (project.mockup === "cart") return <CartMockup />;
-
   return (
     <Image
       src={project.image}

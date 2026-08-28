@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import { getProduct } from "@/lib/catalogue";
+import { getProductBySlug } from "@/lib/products";
 import { notFound } from "next/navigation";
 import Modal from "@/components/modal";
 
 export default function InterceptedZoomInImage({ params }) {
   const newsItemSlug = params.slug;
-  const productItem = getProduct(newsItemSlug);
+  const productItem = getProductBySlug(newsItemSlug);
   if (!productItem) {
     notFound();
   }
@@ -17,7 +17,7 @@ export default function InterceptedZoomInImage({ params }) {
         <div className="fullscreen-image">
           <Image
             src={productItem.image}
-            alt={productItem.alt}
+            alt={productItem.title}
             fill
             className="object-contain"
           />

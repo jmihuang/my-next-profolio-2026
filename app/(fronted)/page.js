@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import personalImg from "/app/assets/image/personal.jpg";
+import { profile } from "@/lib/profile";
 
 export default function Home() {
   return (
@@ -28,7 +29,7 @@ export default function Home() {
               <div>
                 <div className="mb-8 flex items-center gap-3 text-sm tracking-[0.2em] uppercase text-black/40">
                   <div className="w-16 h-px bg-[#5FA391]" />
-                  Jamie Huang · Senior Product Designer
+                  {profile.name} · {profile.role}
                 </div>
 
                 <h1 className="text-[56px] md:text-[88px] leading-[0.95] tracking-[-0.04em] font-light mb-8">
@@ -57,7 +58,7 @@ export default function Home() {
                   </Link>
 
                   <a
-                    href="mailto:jmispace@gmail.com"
+                    href={`mailto:${profile.email}`}
                     className="group border border-black/10 px-8 py-4 rounded-full hover:border-[#5FA391] transition-all duration-500"
                   >
                     <span className="tracking-[0.15em] text-sm uppercase group-hover:text-[#5FA391]">
@@ -210,36 +211,38 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Featured Project */}
-          <section id="contact" className="py-32 px-6 md:px-12">
+          {/* Selected experience */}
+          <section className="py-32 px-6 md:px-12">
             <div className="max-w-7xl mx-auto">
               <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-10">
                 <div>
                   <div className="text-sm tracking-[0.2em] uppercase text-black/40 mb-6">
-                    Featured Project
+                    Selected Experience
                   </div>
 
                   <h3 className="text-5xl md:text-7xl tracking-[-0.04em] leading-[1.05] font-light">
-                    Selected
+                    Experience
                     <br />
-                    works.
+                    highlights.
                   </h3>
                 </div>
 
                 <p className="max-w-lg text-black/55 leading-loose text-lg">
                   從大型 B2C 電商、設計系統到 0→1 APP，
-                  每個作品都呈現產品思考、使用者體驗與前端實作的整合。
+                  持續把產品思考、使用者體驗與前端實作轉化為可落地的成果。
                 </p>
               </div>
 
               <div className="grid lg:grid-cols-2 gap-10">
-                <div className="group cursor-pointer">
+                <Link href="/experience" className="group block">
                   <div className="overflow-hidden rounded-[32px] border border-black/10 mb-6 bg-white">
-                    <img
-                      src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1200&auto=format&fit=crop"
-                      alt="momo Shopping Cart project preview"
-                      className="w-full h-[520px] object-cover group-hover:scale-105 transition-all duration-700"
-                    />
+                    <div className="relative h-[520px] bg-[#111111] text-white p-10 flex flex-col justify-between transition-transform duration-700 group-hover:scale-[1.03]">
+                      <div className="text-sm tracking-[0.2em] uppercase text-white/50">01 / B2C Product</div>
+                      <div>
+                        <div className="text-6xl md:text-8xl tracking-[-0.07em] font-light">momo</div>
+                        <div className="mt-4 text-white/60 text-lg">Shopping Cart</div>
+                      </div>
+                    </div>
                   </div>
 
                   <div className="flex items-start justify-between gap-6">
@@ -260,15 +263,17 @@ export default function Home() {
 
                     <div className="text-[#5FA391] text-xl">↗</div>
                   </div>
-                </div>
+                </Link>
 
-                <div className="group cursor-pointer mt-20">
+                <Link href="/experience" className="group block mt-20">
                   <div className="overflow-hidden rounded-[32px] border border-black/10 mb-6 bg-white">
-                    <img
-                      src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop"
-                      alt="momoUI Design System project preview"
-                      className="w-full h-[520px] object-cover group-hover:scale-105 transition-all duration-700"
-                    />
+                    <div className="relative h-[520px] bg-[#5FA391] text-[#111111] p-10 flex flex-col justify-between transition-transform duration-700 group-hover:scale-[1.03]">
+                      <div className="text-sm tracking-[0.2em] uppercase text-black/50">02 / Design System</div>
+                      <div>
+                        <div className="text-6xl md:text-8xl tracking-[-0.07em] font-light">momoUI</div>
+                        <div className="mt-4 text-black/60 text-lg">Components that scale</div>
+                      </div>
+                    </div>
                   </div>
 
                   <div className="flex items-start justify-between gap-6">
@@ -289,7 +294,7 @@ export default function Home() {
 
                     <div className="text-[#5FA391] text-xl">↗</div>
                   </div>
-                </div>
+                </Link>
               </div>
             </div>
           </section>
@@ -329,7 +334,7 @@ export default function Home() {
           </section>
 
           {/* Contact */}
-          <section className="py-32 px-6 md:px-12">
+          <section id="contact" className="py-32 px-6 md:px-12">
             <div className="max-w-5xl mx-auto text-center">
               <div className="text-sm tracking-[0.2em] uppercase text-black/40 mb-8">
                 Contact
@@ -347,14 +352,14 @@ export default function Home() {
 
               <div className="flex flex-wrap justify-center gap-5">
                 <a
-                  href="mailto:jmispace@gmail.com"
+                  href={`mailto:${profile.email}`}
                   className="px-8 py-4 rounded-full bg-[#111111] text-white tracking-[0.15em] text-sm uppercase hover:bg-[#5FA391] transition-all duration-500"
                 >
                   Email
                 </a>
 
                 <a
-                  href="https://www.linkedin.com/in/jamie-huang-37597a140/"
+                  href={profile.linkedin}
                   target="_blank"
                   rel="noreferrer"
                   className="px-8 py-4 rounded-full border border-black/10 tracking-[0.15em] text-sm uppercase hover:border-[#5FA391] hover:text-[#5FA391] transition-all duration-500"
@@ -363,7 +368,7 @@ export default function Home() {
                 </a>
 
                 <a
-                  href="https://www.uniudesign.com/works"
+                  href={profile.portfolio}
                   target="_blank"
                   rel="noreferrer"
                   className="px-8 py-4 rounded-full border border-black/10 tracking-[0.15em] text-sm uppercase hover:border-[#5FA391] hover:text-[#5FA391] transition-all duration-500"

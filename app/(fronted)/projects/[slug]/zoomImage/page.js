@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { getProduct } from "@/lib/catalogue";
+import { getProductBySlug } from "@/lib/products";
 import { notFound } from "next/navigation";
 
 export default function ZoomInImage({ params }) {
   const newsItemSlug = params.slug;
-  const productItem = getProduct(newsItemSlug);
+  const productItem = getProductBySlug(newsItemSlug);
   if (!productItem) {
     notFound();
   }
@@ -15,7 +15,7 @@ export default function ZoomInImage({ params }) {
     <div className="fullscreen-image">
       <Image
         src={productItem.image}
-        alt={productItem.alt}
+        alt={productItem.title}
         fill
         className="object-contain"
       />

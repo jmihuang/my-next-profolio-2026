@@ -2,15 +2,16 @@
 import { useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-const TinyMCEEditor = ({ onEditorChange }) => {
+const TinyMCEEditor = ({ onEditorChange, initialValue = "", editorId = "news_form_content" }) => {
   const editorRef = useRef(null);
   return (
     <>
       <Editor
         apiKey={apiKey}
+        initialValue={initialValue}
         onInit={(_evt, editor) => (editorRef.current = editor)}
         onEditorChange={onEditorChange}
-        id="news_form_content"
+        id={editorId}
         init={{
           height: 500,
           menubar: false,
