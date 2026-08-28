@@ -4,10 +4,12 @@ import { Button, Card, Input, Upload } from "antd";
 import { ArrowDownOutlined, ArrowUpOutlined, DeleteOutlined, PlusOutlined, UploadOutlined } from "@ant-design/icons";
 import TinyMCEEditor from "@/components/tinymce";
 
-const { TextArea } = Input;
-
 function createSection() {
   return { leadingTitle: "", title: "", content: "", images: [] };
+}
+
+function createImage() {
+  return { path: "", alt: "", title: "", description: "", file: null };
 }
 
 function normalizeSections(sections = []) {
@@ -15,8 +17,42 @@ function normalizeSections(sections = []) {
     leadingTitle: section.section_leading_title || section.leadingTitle || "",
     title: section.section_title || section.title || "",
     content: section.content || "",
-    images: (section.images || []).map((image) => ({ path: image.src || image.path || "", alt: image.alt || "", title: image.title || "", description: image.description || "" })),
+    images: (section.images || []).map((image) => ({ path: image.src || image.path || "", alt: image.alt || "", title: image.title || "", description: image.description || "", file: null })),
   }));
+}
+
+function imageFileList(image, sectionIndex, imageIndex) {
+  if (image.file) return [{ ...image.file, uid: image.file.uid || `new-${sectionIndex}-${imageIndex}` }];
+  if (!image.path) return [];
+  return [{
+    uid: `saved-${sectionIndex}-${imageIndex}`,
+    name: decodeURIComponent(image.path.split("/").pop() || "image"),
+    status: "done",
+    url: image.path,
+  }];
+}
+
+function ImageUpload({ image, sectionIndex, imageIndex, onChange, onRemove }) {
+  const fileList = imageFileList(image, sectionIndex, imageIndex);
+
+  return <Upload
+    accept="image/png,image/jpeg,image/gif,image/webp"
+    beforeUpload={() => false}
+    fileList={fileList}
+    listType="picture-card"
+    showUploadList={{ showPreviewIcon: true, showRemoveIcon: true }}
+    onChange={({ fileList: nextFileList }) => {
+      const nextFile = nextFileList.at(-1);
+      if (!nextFile || !nextFile.originFileObj) return;
+      onChange({ path: "", file: nextFile });
+    }}
+    onRemove={() => {
+      onRemove();
+      return false;
+    }}
+  >
+    <div className="flex flex-col items-center gap-1 text-xs text-black/60"><UploadOutlined /><span>{fileList.length ? "更換圖片" : "上傳圖片"}</span></div>
+  </Upload>;
 }
 
 export default function ProductSectionsEditor({ sections, onChange }) {
@@ -30,6 +66,8 @@ export default function ProductSectionsEditor({ sections, onChange }) {
     updateSections(next);
   };
   const updateImage = (sectionIndex, imageIndex, patch) => updateSection(sectionIndex, { images: sections[sectionIndex].images.map((image, current) => current === imageIndex ? { ...image, ...patch } : image) });
+  const removeImageFile = (sectionIndex, imageIndex) => updateImage(sectionIndex, imageIndex, { path: "", file: null });
+  const removeImage = (sectionIndex, imageIndex) => updateSection(sectionIndex, { images: sections[sectionIndex].images.filter((_, current) => current !== imageIndex) });
   const moveImage = (sectionIndex, imageIndex, direction) => {
     const images = [...sections[sectionIndex].images];
     const target = imageIndex + direction;
@@ -46,11 +84,30 @@ export default function ProductSectionsEditor({ sections, onChange }) {
           <label className="block text-sm font-medium">Section Leading Title<Input className="mt-2" value={section.leadingTitle} onChange={(event) => updateSection(sectionIndex, { leadingTitle: event.target.value })} placeholder="The problem" /></label>
           <label className="block text-sm font-medium">Section Title<Input className="mt-2" value={section.title} onChange={(event) => updateSection(sectionIndex, { title: event.target.value })} placeholder="Consistency cannot depend on individual decisions." /></label>
           <div><div className="mb-2 text-sm font-medium">Content</div><TinyMCEEditor editorId={`product_section_${sectionIndex}`} initialValue={section.content} onEditorChange={(content) => updateSection(sectionIndex, { content })} /></div>
-          <div className="rounded-lg border border-black/10 p-4"><div className="mb-3 text-sm font-medium">圖片與說明</div><div className="space-y-3">{section.images.map((image, imageIndex) => <div key={`image-${imageIndex}`} className="rounded border border-black/10 p-3"><div className="grid gap-3 md:grid-cols-[1fr_1fr_auto]"><Input value={image.path} onChange={(event) => updateImage(sectionIndex, imageIndex, { path: event.target.value })} placeholder="/projects/example.png（可留空）" /><Input value={image.alt} onChange={(event) => updateImage(sectionIndex, imageIndex, { alt: event.target.value })} placeholder="Alt text" /><div className="flex gap-1"><Button size="small" icon={<ArrowUpOutlined />} onClick={() => moveImage(sectionIndex, imageIndex, -1)} disabled={imageIndex === 0} /><Button size="small" icon={<ArrowDownOutlined />} onClick={() => moveImage(sectionIndex, imageIndex, 1)} disabled={imageIndex === section.images.length - 1} /><Button size="small" danger icon={<DeleteOutlined />} onClick={() => updateSection(sectionIndex, { images: section.images.filter((_, index) => index !== imageIndex) })} /></div></div><div className="mt-3 grid gap-3 md:grid-cols-2"><Input value={image.title} onChange={(event) => updateImage(sectionIndex, imageIndex, { title: event.target.value })} placeholder="圖片標題" /><Input value={image.description} onChange={(event) => updateImage(sectionIndex, imageIndex, { description: event.target.value })} placeholder="圖片說明" /></div>
-            <Upload className="mt-3" maxCount={1} beforeUpload={() => false} onChange={({ file }) => updateImage(sectionIndex, imageIndex, { uploadKey: `sectionImageFile_${sectionIndex}_${imageIndex}`, file })}><Button size="small" icon={<UploadOutlined />}>Upload Image</Button></Upload>
-          </div>)}</div><Button className="mt-3" icon={<PlusOutlined />} onClick={() => updateSection(sectionIndex, { images: [...section.images, { path: "", alt: "", title: "", description: "" }] })}>新增圖片與說明</Button></div>
+          <div className="rounded-lg border border-black/10 p-4">
+            <div className="mb-3 text-sm font-medium">圖片與說明</div>
+            <div className="space-y-4">
+              {section.images.map((image, imageIndex) => <div key={`image-${imageIndex}`} className="grid gap-5 rounded-lg border border-black/10 p-4 md:grid-cols-[240px_minmax(0,1fr)]">
+                <div>
+                  <ImageUpload image={image} sectionIndex={sectionIndex} imageIndex={imageIndex} onChange={(patch) => updateImage(sectionIndex, imageIndex, patch)} onRemove={() => removeImageFile(sectionIndex, imageIndex)} />
+                  <div className="mt-3 flex items-center gap-1">
+                    <Button size="small" icon={<ArrowUpOutlined />} onClick={() => moveImage(sectionIndex, imageIndex, -1)} disabled={imageIndex === 0} />
+                    <Button size="small" icon={<ArrowDownOutlined />} onClick={() => moveImage(sectionIndex, imageIndex, 1)} disabled={imageIndex === section.images.length - 1} />
+                    <Button size="small" danger icon={<DeleteOutlined />} onClick={() => removeImage(sectionIndex, imageIndex)}>刪除圖片</Button>
+                  </div>
+                </div>
+                <div className="grid content-start gap-3">
+                  <label className="text-sm font-medium">Alt text<Input className="mt-1.5" value={image.alt} onChange={(event) => updateImage(sectionIndex, imageIndex, { alt: event.target.value })} placeholder="描述圖片內容" /></label>
+                  <label className="text-sm font-medium">圖片標題<Input className="mt-1.5" value={image.title} onChange={(event) => updateImage(sectionIndex, imageIndex, { title: event.target.value })} placeholder="圖片標題" /></label>
+                  <label className="text-sm font-medium">圖片說明<Input.TextArea className="mt-1.5" rows={3} value={image.description} onChange={(event) => updateImage(sectionIndex, imageIndex, { description: event.target.value })} placeholder="說明這張圖片呈現的內容" /></label>
+                </div>
+              </div>)}
+            </div>
+            <Button className="mt-4" icon={<PlusOutlined />} onClick={() => updateSection(sectionIndex, { images: [...section.images, createImage()] })}>新增圖片與說明</Button>
+          </div>
         </div>
-      </Card>)}</div>
+      </Card>)}
+    </div>
     <Button className="mt-6" type="dashed" icon={<PlusOutlined />} onClick={() => updateSections([...sections, createSection()])}>新增案例內容</Button>
   </div>;
 }

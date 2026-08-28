@@ -4,22 +4,31 @@ import { getProductBySlug } from "@/lib/products";
 import { notFound } from "next/navigation";
 import Modal from "@/components/modal";
 
-export default function InterceptedZoomInImage({ params }) {
+function selectedImage(product, requestedImage) {
+  const candidates = [
+    { src: product.image, alt: product.title },
+    ...product.sections.flatMap((section) => section.images.map((image) => ({ src: image.src, alt: image.alt || image.title || product.title }))),
+  ];
+  return candidates.find((image) => image.src === requestedImage) || candidates[0];
+}
+
+export default function InterceptedZoomInImage({ params, searchParams }) {
   const newsItemSlug = params.slug;
   const productItem = getProductBySlug(newsItemSlug);
   if (!productItem) {
     notFound();
   }
+  const image = selectedImage(productItem, searchParams?.image);
 
   return (
     <>
       <Modal>
-        <div className="fullscreen-image">
+        <div className="relative h-screen w-screen p-6 md:p-12">
           <Image
-            src={productItem.image}
-            alt={productItem.title}
+            src={image.src}
+            alt={image.alt}
             fill
-            className="object-contain"
+            className="object-contain p-6 md:p-12"
           />
         </div>
       </Modal>

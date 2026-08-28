@@ -160,7 +160,7 @@ export default function ProjectDetailPage({ params }) {
 
           <ProductImageSection product={project} />
 
-          {project.sections.length ? <ProductDetailSections sections={project.sections} /> : project.case_study_key === "momo-shopping-cart" ? <MomoCaseStudy /> : project.case_study_key === "cleaning-doctor" ? <CleaningDoctorCaseStudy /> : project.case_study_key === "commerce-design-system" ? <DesignSystemCaseStudy /> : <><div className="grid lg:grid-cols-[0.7fr_1.3fr] gap-14 lg:gap-24 py-28 border-b border-black/10">
+          {project.sections.length ? <ProductDetailSections sections={project.sections} productSlug={project.slug} /> : project.case_study_key === "momo-shopping-cart" ? <MomoCaseStudy /> : project.case_study_key === "cleaning-doctor" ? <CleaningDoctorCaseStudy /> : project.case_study_key === "commerce-design-system" ? <DesignSystemCaseStudy /> : <><div className="grid lg:grid-cols-[0.7fr_1.3fr] gap-14 lg:gap-24 py-28 border-b border-black/10">
             <div><div className="text-sm tracking-[0.22em] uppercase text-black/35">Tools & Focus</div></div>
             <div>
               <div className="flex flex-wrap gap-3 mb-12">{project.technologies.map((technology) => <span key={technology} className="px-4 py-2.5 rounded-full border border-black/10 text-sm tracking-[0.08em] text-black/60">{technology}</span>)}</div>
