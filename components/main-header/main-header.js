@@ -12,6 +12,7 @@ import logoImg from "@/app/assets/image/logo.png";
 const MOBILE_LINKS = [
   { href: "/projects", label: "Projects" },
   { href: "/experience", label: "Experience" },
+  { href: "/cv", label: "CV" },
   { href: "/#contact", label: "Contact" },
 ];
 

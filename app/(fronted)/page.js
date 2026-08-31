@@ -2,8 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import personalImg from "/app/assets/image/personal.jpg";
 import { profile } from "@/lib/profile";
+import { getFeaturedProducts } from "@/lib/products";
 
 export default function Home() {
+  const featuredProjects = getFeaturedProducts();
+
   return (
     <div className="flex gap-10 mt-6">
       <section className="flex-1 section daily">
@@ -128,8 +131,8 @@ export default function Home() {
 
               <div>
                 <p className="text-black/65 text-lg leading-[2] mb-10">
-                  我曾參與 momo、Stanley Black & Decker、Microprogram 與長期 0→1
-                  產品專案，累積電商、B2C、管理後台、APP 與品牌網站經驗。從需求分析、
+                  我曾參與大型 B2C、管理後台、品牌網站與長期 0→1
+                  產品專案，累積電商、APP 與數位服務經驗。從需求分析、
                   UX Flow、Wireframe、UI 設計到 React／Vue 前端實作，皆能與 PM、工程師及利害關係人共同推進。
                 </p>
 
@@ -234,67 +237,23 @@ export default function Home() {
               </div>
 
               <div className="grid lg:grid-cols-2 gap-10">
-                <Link href="/experience" className="group block">
-                  <div className="overflow-hidden rounded-[32px] border border-black/10 mb-6 bg-white">
-                    <div className="relative h-[520px] bg-[#111111] text-white p-10 flex flex-col justify-between transition-transform duration-700 group-hover:scale-[1.03]">
-                      <div className="text-sm tracking-[0.2em] uppercase text-white/50">01 / B2C Product</div>
+                {featuredProjects.map((project, index) => (
+                  <Link key={project.slug} href={`/projects/${project.slug}`} className={`group block ${index === 1 ? "lg:mt-20" : ""}`}>
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-[32px] border border-black/10 mb-6 bg-white">
+                      <Image src={project.image} alt={`${project.title} project preview`} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]" />
+                      <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/10" />
+                    </div>
+
+                    <div className="flex items-start justify-between gap-6 border-b border-black/10 pb-7 transition-colors duration-500 group-hover:border-[#5FA391]">
                       <div>
-                        <div className="text-6xl md:text-8xl tracking-[-0.07em] font-light">momo</div>
-                        <div className="mt-4 text-white/60 text-lg">Shopping Cart</div>
+                        <div className="text-sm uppercase tracking-[0.15em] text-black/40 mb-3">0{index + 1} / {project.eyebrow}</div>
+                        <h4 className="text-3xl md:text-4xl font-light tracking-[-0.04em] leading-tight mb-4 group-hover:text-[#5FA391] transition-colors duration-300">{project.title}</h4>
+                        <p className="text-black/55 leading-loose">{project.summary}</p>
                       </div>
+                      <div className="text-[#5FA391] text-xl">↗</div>
                     </div>
-                  </div>
-
-                  <div className="flex items-start justify-between gap-6">
-                    <div>
-                      <div className="text-sm uppercase tracking-[0.15em] text-black/40 mb-3">
-                        Product / UX / Frontend
-                      </div>
-
-                      <h4 className="text-3xl font-light tracking-[-0.03em] mb-4">
-                        momo Shopping Cart
-                      </h4>
-
-                      <p className="text-black/55 leading-loose">
-                        重新整理大型 B2C 電商購物車的功能與操作邏輯，
-                        以 Functional Map、Flow Chart、UI Flow 支援 RWD 與 React 開發。
-                      </p>
-                    </div>
-
-                    <div className="text-[#5FA391] text-xl">↗</div>
-                  </div>
-                </Link>
-
-                <Link href="/experience" className="group block mt-20">
-                  <div className="overflow-hidden rounded-[32px] border border-black/10 mb-6 bg-white">
-                    <div className="relative h-[520px] bg-[#5FA391] text-[#111111] p-10 flex flex-col justify-between transition-transform duration-700 group-hover:scale-[1.03]">
-                      <div className="text-sm tracking-[0.2em] uppercase text-black/50">02 / Design System</div>
-                      <div>
-                        <div className="text-6xl md:text-8xl tracking-[-0.07em] font-light">momoUI</div>
-                        <div className="mt-4 text-black/60 text-lg">Components that scale</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start justify-between gap-6">
-                    <div>
-                      <div className="text-sm uppercase tracking-[0.15em] text-black/40 mb-3">
-                        Design System / Frontend
-                      </div>
-
-                      <h4 className="text-3xl font-light tracking-[-0.03em] mb-4">
-                        momoUI Design System
-                      </h4>
-
-                      <p className="text-black/55 leading-loose">
-                        參與 React、TypeScript、Tailwind、SCSS 與 Storybook 組件建置，
-                        兼顧元件一致性、維護彈性與產品使用情境。
-                      </p>
-                    </div>
-
-                    <div className="text-[#5FA391] text-xl">↗</div>
-                  </div>
-                </Link>
+                  </Link>
+                ))}
               </div>
             </div>
           </section>
