@@ -6,6 +6,7 @@ import "@/app/assets/materialize.css";
 import "@/app/assets/style.css";
 import { EllipsisOutlined, StarOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
+import AdminSignOut from "@/components/admin-sign-out";
 const { Header, Content, Sider } = Layout;
 
 const items1 = ["1", "2", "3"].map((key) => ({
@@ -70,6 +71,7 @@ export default function AdminLayout({ children }) {
                 minWidth: 0,
               }}
             />
+            <AdminSignOut />
           </Header>
           <Layout>
             <Sider
