@@ -1,17 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getAllProducts, getProductBySlug } from "@/lib/products";
+import { getProductBySlug } from "@/lib/products";
 import CleaningDoctorCaseStudy from "../../../../components/cleaning-doctor/cleaning-doctor-case-study-v2";
 import ProductDetailSections, { ProductImageSection } from "@/components/products/product-detail-sections";
 
-export async function generateStaticParams() {
-  const products = await getAllProducts();
-  return products.map((product) => ({ slug: product.slug }));
-}
+export const dynamic = "force-dynamic";
 
-export function generateMetadata({ params }) {
-  const project = getProductBySlug(params.slug);
+export async function generateMetadata({ params }) {
+  const project = await getProductBySlug(params.slug);
   if (!project) return {};
   return {
     title: `${project.title} | Jamie Huang`,
@@ -136,8 +133,8 @@ function DesignSystemCaseStudy() {
   </>;
 }
 
-export default function ProjectDetailPage({ params }) {
-  const project = getProductBySlug(params.slug);
+export default async function ProjectDetailPage({ params }) {
+  const project = await getProductBySlug(params.slug);
   if (!project) notFound();
 
   return (

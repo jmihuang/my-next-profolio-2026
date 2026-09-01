@@ -12,9 +12,11 @@ function selectedImage(product, requestedImage) {
   return candidates.find((image) => image.src === requestedImage) || candidates[0];
 }
 
-export default function ZoomInImage({ params, searchParams }) {
+export const dynamic = "force-dynamic";
+
+export default async function ZoomInImage({ params, searchParams }) {
   const newsItemSlug = params.slug;
-  const productItem = getProductBySlug(newsItemSlug);
+  const productItem = await getProductBySlug(newsItemSlug);
   if (!productItem) {
     notFound();
   }

@@ -2,6 +2,8 @@ import Link from "next/link";
 import ProjectGallery from "./project-gallery";
 import { getAllProducts, getProductCategories } from "@/lib/products";
 
+export const dynamic = "force-dynamic";
+
 export default async function ProductsPage() {
   const [projects, categories] = await Promise.all([
     getAllProducts(),

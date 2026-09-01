@@ -4,8 +4,10 @@ import personalImg from "/app/assets/image/personal.jpg";
 import { profile } from "@/lib/profile";
 import { getFeaturedProducts } from "@/lib/products";
 
-export default function Home() {
-  const featuredProjects = getFeaturedProducts();
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const featuredProjects = await getFeaturedProducts();
 
   return (
     <div className="flex gap-10 mt-6">
