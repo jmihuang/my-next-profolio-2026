@@ -5,67 +5,50 @@ const slug = "node-network";
 
 const sections = [
   {
-    leadingTitle: "01 - Project context",
-    title: "A research-led concept for finding and managing professional connections.",
-    content: `<p><strong>Node 人脈管理</strong>是以商業人脈建立、判斷與維繫為題的行動產品概念。此案例以提供的訪談／問卷分析、角色模型與介面 mockup 為範圍；以下主張均回到研究原圖，不延伸為未被素材支持的成果或指標。</p><p>研究資料中反覆出現的任務包含：找尋合適人選、判斷是否值得建立連結、整理既有人脈，以及在沒有立即需求時維持關係。</p>`,
+    leadingTitle: "01 - UX Interview",
+    title: "從訪談與角色模型，整理出人脈建立的 POV 觀點。",
+    content: `<p>這套產品定位為<strong>商務聚會後使用的封閉式工商名錄</strong>。UX Research 以角色模型與問卷分析記錄不同受訪者的情境、目標、困難與解法；案例保留原始 PDF 圖檔，讓每個觀點都可回看來源。</p><p><strong>POV 觀點：</strong>線下實體社交轉為線上管理時，使用者需要解決「辨識度低、信任感不足、人脈檢索困難」；不只找到人，也要能理解對方、確認關聯，並在下一次互動時想起這段關係。</p>`,
     images: [
-      ["/projects/node-network/ux-research/UX_工作區域 1 複本 3.png", "問卷分析：拓展人脈", "研究來源｜拓展人脈", "原始問卷分析指出：拓展人脈需要明確族群與自身可提供、需要的資訊。"],
+      ["/projects/node-network/ux-research/UX_1.png", "藍教主使用者角色模型", "研究證據｜快速找到適合人選", "角色模型記錄了篩選、照片、抬頭與三個關鍵字作為找人與辨識的需求。"],
+      ["/projects/node-network/ux-research/UX_2.png", "Zoey 使用者角色模型", "研究證據｜先建立信任", "角色模型記錄了先了解專業背景與作品，以及透過推薦取得信任的需求。"],
     ],
   },
   {
-    leadingTitle: "02 - UX Research",
-    title: "Five role models and four themed analyses made the needs visible.",
-    content: `<p>原始 UX Research 由 <strong>5 份使用者角色模型</strong>與<strong> 4 份問卷分析</strong>組成。角色包含藍教主、Zoey、蔡恩、Jonny 與 Sunny，涵蓋產業人士、行銷顧問、個人創業接案、講師／創業顧問與企業二代／公司主要業務等情境。</p><p>問卷分析將受訪者表述整理為四個主題：<strong>有效管理人脈群、信任建立、維繫關係、拓展人脈</strong>。下列為原始研究頁面，保留其題組與問題表述。</p>`,
+    leadingTitle: "02 - Card Sorting",
+    title: "以 Card Sorting 彙整問題，收斂成可設計的 POV。",
+    content: `<p>將訪談／問卷中反覆出現的問題依主題彙整為：<strong>有效管理人脈群、信任建立、維繫關係、拓展人脈</strong>。每個群組保留「發現什麼問題 → 現有的解決方式 → 功能可以怎麼做」的整理脈絡。</p><ul><li><strong>名片過多、事後忘記是誰：</strong>以人像卡片、3 個關鍵字及掃碼當下的備註／標籤，建立記憶錨點。</li><li><strong>商務引薦缺乏信任基礎：</strong>以共同朋友與人脈節點，讓二度人脈成為可理解的背書。</li><li><strong>需求無法精準對接：</strong>以「我能提供／我想要」的雙向條件，直接對齊合作需求。</li></ul><p><strong>收斂後的 POV：</strong>人脈產品需要同時支援「找得到、看得懂、信得過、維持得住」四個連續階段。</p>`,
     images: [
-      ["/projects/node-network/ux-research/UX_4.png", "問卷分析：有效管理人脈群與信任建立", "研究來源｜整理與信任", "原圖記錄人脈資料整理的需求，以及陌生接觸時需先了解對方資料的疑慮。"],
-      ["/projects/node-network/ux-research/UX_工作區域 1 複本 5.png", "問卷分析：維繫關係與信任建立", "研究來源｜關係維繫", "原圖記錄平時互動、活動邀請與認識背景如何影響關係溫度與信任。"],
+      ["/projects/node-network/ux-research/UX_4.png", "Card sorting：有效管理人脈群與信任建立", "彙整｜整理與信任", "研究圖中整理了人脈資料難以查找，以及陌生接觸前需要了解對方資料的問題。"],
+      ["/projects/node-network/ux-research/UX_工作區域 1 複本 5.png", "Card sorting：維繫關係與信任建立", "彙整｜關係維繫", "研究圖中整理平時互動、活動邀請與認識背景如何影響熟悉感與信任。"],
+      ["/projects/node-network/ux-research/UX_3png.png", "Card sorting：拓展人脈", "彙整｜拓展人脈", "研究圖中整理拓展人脈的需求，指向明確族群與自身可提供、需要的資訊。"],
     ],
   },
   {
-    leadingTitle: "03 - Key insight",
-    title: "Trust is built before a new connection feels worth pursuing.",
-    content: `<p><strong>研究證據：</strong>Zoey 的角色模型指出，在與講師接觸前會先查詢對方背景（經歷／作品），並在不認識對方時感到信任不足；其解法直接列出「專業呈現歷程或相關連結」及「推薦口袋名單給朋友的功能」。藍教主的模型也記錄「有朋友問你在這有認識做設計的人嗎」與「問共同朋友」。</p><p><strong>設計方向：</strong>讓人脈卡和個人檔案先提供可驗證的抬頭、經歷、作品／連結、共同朋友與關鍵字，協助使用者理解對方與連結脈絡。</p>`,
+    leadingTitle: "03 - Competitive Analysis",
+    title: "從開放式履歷庫，轉向實體聚會後的高信任關係管理。",
+    content: `<p><strong>封閉性與高信任度：</strong>LinkedIn 偏向開放式履歷庫與求職招聘；Node 聚焦實體商會／聚會後的關係維繫與轉介紹，所有節點皆基於真實互動或共同圈子。</p><p><strong>合作場景優先：</strong>Node 不以長篇工作史為主要閱讀方式，而是優先呈現即時需求、能提供的資源、想取得的資源，以及人與人之間的標籤印象。</p><p><strong>設計意義：</strong>透過共同朋友、人脈節點、關鍵字與雙向供需條件，降低陌生推銷的防備心，並讓商務媒合可從具體合作目標開始。</p>`,
+    images: [],
+  },
+  {
+    leadingTitle: "04 - Low-fidelity Prototype",
+    title: "先以低保真流程確認搜尋、篩選、加入人脈與聊天的任務骨架。",
+    content: `<p>低保真 prototype 將主要任務拆成首頁／搜尋、搜尋／篩選、搜尋結果中的加入人脈，以及聊天列表。此階段聚焦資訊與任務順序，作為後續高保真介面設計的基礎。</p>`,
     images: [
-      ["/projects/node-network/ux-research/UX_2.png", "Zoey 使用者角色模型", "研究來源｜信任建立", "在研究中，Zoey 先查詢背景與作品，並指出專業推薦能取得信任。"],
-      ["/projects/node-network/mockup/人脈詳細頁-會員.png", "人脈詳細頁介面", "設計呈現｜可驗證的個人資訊", "介面呈現抬頭、地區、共同朋友、工作經歷、服務項目與相關連結。"],
+      ["/projects/node-network/mockup/nodeapp2.png", "Node 低保真 prototype", "Wireframe｜核心任務流程", "呈現首頁搜尋、條件篩選、加入人脈與聊天列表的初步流程。"],
     ],
   },
   {
-    leadingTitle: "04 - Key insight",
-    title: "A useful connection starts with an explicit fit, not a vague contact list.",
-    content: `<p><strong>研究證據：</strong>藍教主需要「快速找到在我附近，可以適合人才」；蔡恩希望找到「有效的曝光自己專業」，並提出可依產業、想要接觸的類型或職業做分類。問卷分析「拓展人脈」亦提出需顯示自己想接觸的類型或「我能提供／我想要」。</p><p><strong>設計方向：</strong>以產業、工作媒合、興趣、地區與共同朋友作為條件；人脈列表先顯示大頭照、職業／抬頭、關鍵字與人脈節點，讓使用者快速形成記憶與判斷依據。</p>`,
+    leadingTitle: "05 - Requirements & UI",
+    title: "把研究需求對應到探索、判斷、連結與資料維護的設計畫面。",
+    content: `<ol><li><strong>探索與篩選：</strong>每日推薦、搜尋、近期／熱門搜尋，以及興趣、產業、工作媒合條件；降低主動陌生開發的社交壓力。</li><li><strong>判斷與信任：</strong>人像卡片、現職抬頭、3 個關鍵字、人脈節點、共同朋友、工作經歷、服務項目與相關連結。</li><li><strong>建立與維護連結：</strong>電子名片、掃描行動條碼加入人脈，並在交流後立即以自訂標籤與備註保留當下情境。</li><li><strong>雙向供需對齊：</strong>以求才／求職、找投資／投資他人、尋求諮詢／給予諮詢等條件，讓合作需求能被直接辨識。</li></ol><p>以下畫面為設計成果，對應前述研究與 Card Sorting 收斂的需求；不延伸宣稱未提供的使用成效。</p>`,
     images: [
-      ["/projects/node-network/ux-research/UX_1.png", "藍教主使用者角色模型", "研究來源｜找尋適合人選", "角色模型中的解法列出篩選功能與照片、抬頭、三個關鍵字等記憶線索。"],
-      ["/projects/node-network/mockup/首頁-條件設定.png", "首頁條件設定介面", "設計呈現｜多維條件", "以興趣、產業與工作媒合條件協助縮小探索範圍。"],
-      ["/projects/node-network/mockup/首頁.png", "首頁每日推薦介面", "設計呈現｜人脈節點與關鍵字", "每日推薦先呈現人脈節點、媒合條件、共同朋友與三個關鍵字。"],
-    ],
-  },
-  {
-    leadingTitle: "05 - Key insight",
-    title: "Relationship value needs time and ongoing familiarity.",
-    content: `<p><strong>研究證據：</strong>「維繫關係」問卷分析直接整理為「人脈關係是需要長時間的刻意經營」與「需要建立熟悉感」；Sunny 的模型提到商會聚會與邀請活動，Jonny 則需要「找到志同道合的合作夥伴」，並將維持聯繫列為解法。</p><p><strong>設計方向：</strong>讓個人檔案可保留人脈節點、興趣與工作經歷等後續互動素材；掃描行動條碼加入新連結時，提示使用者加入第一個關鍵字，建立日後辨識的線索。</p>`,
-    images: [
-      ["/projects/node-network/ux-research/UX_工作區域 1 複本 4.png", "Sunny 使用者角色模型", "研究來源｜互相認識與活動", "角色模型提到名片交換、互相認識與商會活動所帶來的關係延續。"],
-      ["/projects/node-network/ux-research/UX_工作區域 1 複本 3.png", "Jonny 使用者角色模型", "研究來源｜志同道合的合作夥伴", "角色模型將維持聯繫與了解對方專業視為找到合作夥伴的條件。"],
-      ["/projects/node-network/mockup/加新人脈-行動條碼-掃描加入.png", "掃描加入人脈並設定關鍵字", "設計呈現｜加入後的記憶錨點", "掃描加入後，產品引導使用者為新朋友加入第一個關鍵字。"],
-    ],
-  },
-  {
-    leadingTitle: "06 - Product solution",
-    title: "Search, assess, connect, and keep context for the next interaction.",
-    content: `<ol><li><strong>探索：</strong>從每日推薦、搜尋與條件設定尋找可能的人選。</li><li><strong>評估：</strong>檢視人脈節點、媒合條件、共同朋友、個人資訊與工作經歷。</li><li><strong>建立連結：</strong>透過加入人脈、掃描名片／行動條碼完成交換。</li><li><strong>保留脈絡：</strong>以名片、關鍵字與個人資訊保留下一次互動可用的辨識線索。</li></ol><p>這是依既有介面 mockup 可辨識的流程整理，並非宣稱已驗證的成效數據。</p>`,
-    images: [
-      ["/projects/node-network/mockup/首頁-搜尋Focus狀態.png", "首頁搜尋介面", "01｜探索與搜尋", "搜尋提供近期與熱門搜尋詞，並可進入進階搜尋。"],
-      ["/projects/node-network/mockup/名片.png", "個人電子名片介面", "02｜交換與保留聯絡資訊", "電子名片集中顯示抬頭、地區、標籤與多種聯絡方式，並提供分享與掃描入口。"],
-      ["/projects/node-network/mockup/個人資訊-工作資歷修改.png", "工作資歷修改介面", "03｜維護可驗證資訊", "工作經歷可編輯並標示現職，支援個人資料的持續更新。"],
-    ],
-  },
-  {
-    leadingTitle: "07 - Reflection",
-    title: "What the supplied material demonstrates - and what it does not yet establish.",
-    content: `<p>現有材料充分呈現研究分析、角色模型，以及從需求到介面的設計意圖；但<strong>未提供可公開引用的訪談人數、受訪者招募方式、逐字稿、可用性測試或產品上線成效</strong>。因此本案例不以轉換率、留存或驗證結果作結論。</p><p>若後續補充研究方法、訪談摘錄或測試／上線資料，此區可擴充為更完整的 Research Evidence → Design Decision → Outcome 敘事。</p>`,
-    images: [
-      ["/projects/node-network/ux-research/UX_5.png", "蔡恩使用者角色模型", "研究來源｜專業與熟悉度", "角色模型記錄了專業曝光、朋友引薦與產生熟悉感的需求。"],
+      ["/projects/node-network/mockup/首頁.png", "每日推薦人脈列表", "需求｜快速探索與記憶錨點", "以人脈節點、媒合資訊、共同朋友與三個關鍵字協助快速判斷。"],
+      ["/projects/node-network/mockup/首頁-搜尋Focus狀態.png", "搜尋介面", "需求｜主動搜尋", "提供近期搜尋、熱門搜尋與進階搜尋入口。"],
+      ["/projects/node-network/mockup/首頁-條件設定.png", "條件設定介面", "需求｜多維篩選", "以興趣、產業與工作媒合條件協助縮小探索範圍。"],
+      ["/projects/node-network/mockup/人脈詳細頁-會員.png", "人脈詳細頁", "需求｜了解對方與建立信任", "集中呈現抬頭、地區、共同朋友、工作經歷、服務項目與相關連結。"],
+      ["/projects/node-network/mockup/名片.png", "電子名片", "需求｜交換聯絡資訊", "電子名片集中呈現個人資料與掃描加入的入口。"],
+      ["/projects/node-network/mockup/加新人脈-行動條碼-掃描加入.png", "掃描加入人脈", "需求｜建立關係後留下線索", "掃描加入後，提示使用者加入關鍵字作為日後辨識線索。"],
+      ["/projects/node-network/mockup/個人資訊-工作資歷修改.png", "工作資歷修改", "需求｜持續維護資料", "工作經歷可編輯並標示現職，支援個人資訊的更新。"],
     ],
   },
 ];
@@ -86,7 +69,7 @@ db.transaction(() => {
     removeSections.run(existing.id);
     removeProduct.run(existing.id);
   }
-  const productId = insertProduct.run(slug, "Node 人脈管理", "UX Research · Product Design", "Product Designer · UX Research · UX/UI Design", "以角色模型與問卷分析，整理商業人脈從探索、信任到關係維繫的設計方向。", "UX Research · Persona · Information Architecture · Mobile UX", JSON.stringify(["Product & Commerce"]), JSON.stringify(["UX Research", "Persona", "Information Architecture", "Mobile UX", "Interaction Design"]), JSON.stringify(["Research evidence to design decision", "Trust and professional context", "Relationship nurturing"]), "/projects/node-network/ux-research/UX_4.png", slug, 6).lastInsertRowid;
+  const productId = insertProduct.run(slug, "Node 人脈管理", "UX Research · Product Design", "Product Designer · UX Research · UX/UI Design", "以 UX 訪談、Card Sorting 與 prototype，整理人脈探索、信任、連結與維繫的設計方向。", "UX Research · Card Sorting · Prototype · Mobile UX", JSON.stringify(["Product & Commerce"]), JSON.stringify(["UX Research", "Card Sorting", "Information Architecture", "Prototype", "Mobile UX"]), JSON.stringify(["POV to design decision", "Trust and professional context", "Relationship nurturing"]), "/projects/node-network/node-network-hero.jpeg", slug, 6).lastInsertRowid;
   const sectionIds = sections.map((section, index) => insertSection.run(productId, index, section.leadingTitle, section.title, section.content).lastInsertRowid);
   images.forEach((image) => insertImage.run(productId, sectionIds[image.sectionIndex], image.path, image.alt, image.title, image.description, image.imageIndex));
 })();
