@@ -1,84 +1,141 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import styles from "./main-header.module.css";
-import logoImg from "/app/assets/image/logo.png";
 import Image from "next/image";
-import NavLink from "./nav-link";
+import { usePathname } from "next/navigation";
+
+import styles from "./main-header.module.css";
+
+import logoImg from "@/app/assets/image/logo.png";
+
+const MOBILE_LINKS = [
+  { href: "/projects", label: "Projects" },
+  { href: "/experience", label: "Experience" },
+  { href: "/cv", label: "CV" },
+  { href: "/#contact", label: "Contact" },
+];
+
 const MainHeader = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const [scrolled, setScrolled] = useState(false);
+
+  const pathname = usePathname();
+
+  /* close menu after route change */
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  /* lock body */
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const prev = document.body.style.overflow;
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [menuOpen]);
+
+  /* scroll state */
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    onScroll();
+
+    window.addEventListener("scroll", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
   return (
-    <header>
-      <div id="nav-bar">
-        <nav>
-          <div className={`container ${styles["nav-wrapper"]}`}>
-            <Link href="/">
-              <Image
-                src={logoImg}
-                alt="自然淨化,環境清潔"
-                width={126}
-                height={43}
-              />
-            </Link>
-            <Link href="/">純粹。很好。</Link>
-            <div className="menu-wrapper scoll-down-show">
-              <ul className="nav-menu hide-on-med-and-down">
-                <NavLink href="/about">關於我們</NavLink>
-                <NavLink href="/products">產品介紹</NavLink>
-                <NavLink href="/news">最新消息</NavLink>
-                <NavLink href="/contacts">聯絡我們</NavLink>
-              </ul>
-            </div>
-            <ul className="nav-cart right">
-              <li>
-                <i className="material-icons prefix">search</i>
-              </li>
-              <li>
-                <Link href="/login">
-                  <i className="material-icons prefix hide-on-med-and-up">
-                    person
-                  </i>
-                  <span className="hide-on-med-and-down">登入/註冊</span>
+    <header className={`${styles.root} ${scrolled ? styles.rootScrolled : ""}`}>
+      <nav className={styles.bar}>
+        {/* logo */}
+
+        <Link href="/" className={styles.logo}>
+          <Image
+            src={logoImg}
+            alt="Jamie Studio"
+            width={320}
+            height={72}
+            priority
+          />
+        </Link>
+
+        {/* desktop nav */}
+
+        <ul className={styles.desktopNav}>
+          {MOBILE_LINKS.map((item) => {
+            const active =
+              pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+            return (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={active ? styles.desktopNavActive : ""}
+                >
+                  {item.label}
                 </Link>
               </li>
-              <li className="preicon-links shopping-cart">
-                <Link href="#!" className="mini-cart">
-                  <span className="circle">0</span>
-                  <i className="material-icons">shopping_cart</i>
+            );
+          })}
+        </ul>
+
+        {/* burger */}
+
+        <button
+          type="button"
+          className={`${styles.burger} ${menuOpen ? styles.burgerOpen : ""}`}
+          aria-label={menuOpen ? "Close Menu" : "Open Menu"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-navigation"
+          onClick={() => setMenuOpen((prev) => !prev)}
+        >
+          <span className={styles.burgerLines}>
+            <span />
+            <span />
+          </span>
+        </button>
+      </nav>
+
+      {/* mobile menu */}
+
+      <div
+        id="mobile-navigation"
+        className={`${styles.mobilePanel} ${
+          menuOpen ? styles.mobilePanelOpen : ""
+        }`}
+      >
+        <ul className={styles.mobileList}>
+          {MOBILE_LINKS.map((item) => {
+            const active =
+              pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+            return (
+              <li
+                key={item.href}
+                className={active ? styles.mobileItemActive : undefined}
+              >
+                <Link href={item.href} onClick={() => setMenuOpen(false)}>
+                  {item.label}
                 </Link>
               </li>
-            </ul>
-            <div id="burger" className="burger default hide-on-large-only">
-              <span></span>
-              <span></span>
-            </div>
-          </div>
-        </nav>
-        <div className="nav-overlay">
-          <div className="container">
-            <Link href="/" className="brand-logo">
-              自然淨化,環境清潔
-            </Link>
-            <div id="burger-active" className="burger right active">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            <ul className="menu">
-              <li>
-                <Link href="/about">關於我們</Link>
-              </li>
-              <li>
-                <Link href="/product">產品介紹</Link>
-              </li>
-              <li>
-                <Link href="/news">最新消息</Link>
-              </li>
-              <li>
-                <Link href="/contacts">聯絡我們</Link>
-              </li>
-              <li></li>
-            </ul>
-          </div>
-        </div>
+            );
+          })}
+        </ul>
       </div>
     </header>
   );

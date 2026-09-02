@@ -6,6 +6,7 @@ import "@/app/assets/materialize.css";
 import "@/app/assets/style.css";
 import { EllipsisOutlined, StarOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
+import AdminSignOut from "@/components/admin-sign-out";
 const { Header, Content, Sider } = Layout;
 
 const items1 = ["1", "2", "3"].map((key) => ({
@@ -14,13 +15,17 @@ const items1 = ["1", "2", "3"].map((key) => ({
 }));
 const items2 = [
   {
-    key: "product",
+    key: "project",
     icon: <EllipsisOutlined />,
-    label: "產品",
+    label: "專案",
     children: [
       {
-        key: "/admin/product/create",
-        label: <Link href="/admin/products/create">新增產品</Link>,
+        key: "/admin/projects",
+        label: <Link href="/admin/projects">作品列表</Link>,
+      },
+      {
+        key: "/admin/projects/create",
+        label: <Link href="/admin/projects/create">新增專案</Link>,
       },
     ],
   },
@@ -31,7 +36,7 @@ const items2 = [
     children: [
       {
         key: "/admin/news/dataIndex",
-        label: <Link href="/admin/news/data-index">最新消息列表</Link>,
+        label: <Link href="/admin/news/">最新消息列表</Link>,
       },
       {
         key: "/admin/news/create",
@@ -66,6 +71,7 @@ export default function AdminLayout({ children }) {
                 minWidth: 0,
               }}
             />
+            <AdminSignOut />
           </Header>
           <Layout>
             <Sider

@@ -17,3 +17,14 @@
 body {
   background-color: rgb(var(--background-color));
 }
+
+/* 配合固定式 main header，避免內容貼在導覽列下 */
+.main-below-fixed-header {
+  padding-top: 4.5rem;
+}
+
+@media (min-width: 1093px) {
+  .main-below-fixed-header {
+    padding-top: 5.5rem;
+  }
+}

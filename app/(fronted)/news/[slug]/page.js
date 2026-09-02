@@ -1,5 +1,6 @@
 import React from "react";
 import { getNews } from "@/lib/news";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }) {
   const slug = params.slug;

@@ -13,7 +13,7 @@ export default function FrontedLayout({ children }) {
     <html lang="zh-tw">
       <body>
         <MainHeader />
-        <main className="container">{children}</main>
+        <main className="main-below-fixed-header">{children}</main>
       </body>
     </html>
   );

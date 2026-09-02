@@ -1,0 +1,3 @@
+NEXTJS_ENV=development
+# Set this to true only on macOS 13.5+ or a supported Linux DevContainer.
+# ENABLE_LOCAL_D1=true
