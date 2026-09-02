@@ -4,6 +4,8 @@
  * bundle the native Argon2 module.
  */
 const authConfig = {
+  trustHost: true,
+  providers: [],
   pages: {
     signIn: "/admin/login",
   },

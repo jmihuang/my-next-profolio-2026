@@ -9,13 +9,14 @@ const credentialsSchema = z.object({
   password: z.string().min(12).max(256),
 });
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
+const authOptions = {
   ...authConfig,
-  trustHost: true,
   session: {
     strategy: "jwt",
   },
-  providers: [
+};
+
+authOptions.providers = [
     Credentials({
       name: "Admin login",
       credentials: {
@@ -58,5 +59,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         };
       },
     }),
-  ],
-});
+  ];
+
+export const { handlers, auth, signIn, signOut } = NextAuth(authOptions);
