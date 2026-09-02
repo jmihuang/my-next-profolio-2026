@@ -1,8 +1,8 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { argon2Verify } from "hash-wasm";
 import { z } from "zod";
 import authConfig from "./auth.config";
+import { verifyAdminPassword } from "./lib/admin-password";
 
 const credentialsSchema = z.object({
   email: z.string().trim().email().max(254),
@@ -28,29 +28,42 @@ authOptions.providers = [
         const adminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
         const passwordHash = process.env.ADMIN_PASSWORD_HASH;
 
-        if (!parsedCredentials.success || !adminEmail || !passwordHash) {
+        if (!parsedCredentials.success) {
+          console.info("[admin-auth] rejected: invalid credentials format");
           return null;
         }
 
-        if (
-          parsedCredentials.data.email.toLowerCase() !== adminEmail ||
-          !passwordHash.startsWith("$argon2id$")
-        ) {
+        if (!adminEmail || !passwordHash) {
+          console.error("[admin-auth] rejected: missing runtime configuration");
+          return null;
+        }
+
+        if (parsedCredentials.data.email.toLowerCase() !== adminEmail) {
+          console.info("[admin-auth] rejected: email mismatch");
+          return null;
+        }
+
+        if (!passwordHash.startsWith("pbkdf2-sha256$")) {
+          console.error("[admin-auth] rejected: invalid PBKDF2 hash format");
           return null;
         }
 
         try {
-          const passwordMatches = await argon2Verify({
-            hash: passwordHash,
-            password: parsedCredentials.data.password,
-          });
+          const passwordMatches = await verifyAdminPassword(
+            parsedCredentials.data.password,
+            passwordHash,
+          );
 
           if (!passwordMatches) {
+            console.info("[admin-auth] rejected: password mismatch");
             return null;
           }
-        } catch {
+        } catch (error) {
+          console.error("[admin-auth] PBKDF2 verification error", error?.name || "UnknownError");
           return null;
         }
+
+        console.info("[admin-auth] accepted");
 
         return {
           id: "portfolio-admin",

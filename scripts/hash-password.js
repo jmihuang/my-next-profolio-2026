@@ -1,5 +1,18 @@
 const readline = require("readline");
-const argon2 = require("argon2");
+const { pbkdf2, randomBytes } = require("crypto");
+const { promisify } = require("util");
+
+const deriveKey = promisify(pbkdf2);
+const ITERATIONS = 600000;
+const KEY_LENGTH = 32;
+
+function toBase64Url(value) {
+  return value
+    .toString("base64")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/g, "");
+}
 
 function askForPassword(question) {
   return new Promise((resolve) => {
@@ -38,14 +51,11 @@ async function main() {
     throw new Error("Passwords do not match.");
   }
 
-  const hash = await argon2.hash(password, {
-    type: argon2.argon2id,
-    memoryCost: 65536,
-    timeCost: 3,
-    parallelism: 4,
-  });
+  const salt = randomBytes(16);
+  const derivedKey = await deriveKey(password, salt, ITERATIONS, KEY_LENGTH, "sha256");
+  const hash = `pbkdf2-sha256$${ITERATIONS}$${toBase64Url(salt)}$${toBase64Url(derivedKey)}`;
 
-  console.log("\nCopy this value to ADMIN_PASSWORD_HASH in .env.local:");
+  console.log("\nCopy this value to ADMIN_PASSWORD_HASH in .env.local and Cloudflare:");
   console.log(hash);
 }
 
