@@ -16,7 +16,6 @@ const authConfig = {
       return Boolean(auth?.user);
     },
   },
-  providers: [],
 };
 
 export default authConfig;
