@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "jamie-portfolio",
+  "name": "my-next-profolio-2026",
   "main": ".open-next/worker.js",
   "compatibility_date": "2024-12-30",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
@@ -12,7 +12,7 @@
     {
       "binding": "PRODUCTS_DB",
       "database_name": "jamie-portfolio-products",
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "2a258add-5bb4-416c-bd47-6d82dbeafd89",
       "migrations_dir": "migrations"
     }
   ]
