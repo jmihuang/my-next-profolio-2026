@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import argon2 from "argon2";
+import { argon2Verify } from "hash-wasm";
 import { z } from "zod";
 import authConfig from "./auth.config";
 
@@ -39,10 +39,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         }
 
         try {
-          const passwordMatches = await argon2.verify(
-            passwordHash,
-            parsedCredentials.data.password,
-          );
+          const passwordMatches = await argon2Verify({
+            hash: passwordHash,
+            password: parsedCredentials.data.password,
+          });
 
           if (!passwordMatches) {
             return null;
