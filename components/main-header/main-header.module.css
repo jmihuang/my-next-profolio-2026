@@ -126,6 +126,14 @@
   width: 100%;
 }
 
+.desktopNavActive {
+  color: #111 !important;
+}
+
+.desktopNavActive::after {
+  width: 100% !important;
+}
+
 /* burger */
 
 .burger {
@@ -370,14 +378,6 @@
 
   .desktopNav {
     display: none;
-  }
-
-  .desktopNavActive {
-    color: #111 !important;
-  }
-
-  .desktopNavActive::after {
-    width: 100% !important;
   }
 
   .burger {

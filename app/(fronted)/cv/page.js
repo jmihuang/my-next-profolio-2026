@@ -76,7 +76,7 @@ export const metadata = {
   description: "Senior Product Designer · UX/UI × Product Design × Frontend.",
 };
 
-export default function CVPage() {
+export default function CareerProfile({ showExperienceTitle = false }) {
   return (
     <div className="portfolio-page font-sans min-h-screen overflow-hidden bg-[#F7F6F2] text-[#111111]">
       <div className="fixed inset-0 pointer-events-none opacity-[0.035]">
@@ -96,12 +96,18 @@ export default function CVPage() {
             <div>
               <div className="mb-8 flex items-center gap-4 text-sm uppercase tracking-[0.25em] text-black/35">
                 <span className="h-px w-16 bg-[#5FA391]" />
-                Curriculum Vitae
+                {showExperienceTitle ? "Career overview" : "Curriculum Vitae"}
               </div>
               <h1 className="text-[68px] font-light leading-[0.88] tracking-[-0.075em] md:text-[140px]">
-                Jamie
-                <br />
-                Huang.
+                {showExperienceTitle ? (
+                  "Experience."
+                ) : (
+                  <>
+                    Jamie
+                    <br />
+                    Huang.
+                  </>
+                )}
               </h1>
             </div>
 
