@@ -4,6 +4,8 @@
 
 :root {
   --background-color: 256, 256, 256;
+  --font-portfolio-sans: Arial, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --font-portfolio-serif: "Times New Roman", Georgia, Garamond, "Noto Serif TC", serif, Roboto, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,6 +18,24 @@
 
 body {
   background-color: rgb(var(--background-color));
+  font-family: var(--font-portfolio-sans);
+}
+
+/* Portfolio typography: body copy is sans-serif, display typography is serif. */
+.font-sans {
+  font-family: var(--font-portfolio-sans);
+}
+
+.font-serif {
+  font-family: var(--font-portfolio-serif);
+}
+
+.portfolio-page {
+  font-family: var(--font-portfolio-sans);
+}
+
+.portfolio-page :is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-portfolio-serif);
 }
 
 /* 配合固定式 main header，避免內容貼在導覽列下 */

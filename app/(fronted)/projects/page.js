@@ -10,7 +10,7 @@ export default async function ProductsPage() {
     getProductCategories(),
   ]);
   return (
-    <div className="bg-[#F7F6F2] text-[#111111] min-h-screen overflow-hidden relative">
+    <div className="portfolio-page bg-[#F7F6F2] text-[#111111] min-h-screen overflow-hidden relative">
       <div className="fixed inset-0 opacity-[0.035] pointer-events-none">
         <div
           className="absolute inset-0"

@@ -12,7 +12,7 @@ export default async function Home() {
   return (
     <div className="flex gap-10 mt-6">
       <section className="flex-1 section daily">
-        <div className="bg-[#F7F6F2] text-[#111111] min-h-screen overflow-x-hidden font-sans">
+        <div className="portfolio-page bg-[#F7F6F2] text-[#111111] min-h-screen overflow-x-hidden font-sans">
           {/* Background Grid */}
           <div className="fixed inset-0 opacity-[0.04] pointer-events-none">
             <div
