@@ -138,7 +138,7 @@ export default async function ProjectDetailPage({ params }) {
   if (!project) notFound();
 
   return (
-    <div className="bg-[#F7F6F2] text-[#111111] min-h-screen overflow-hidden relative">
+    <div className="portfolio-page font-sans bg-[#F7F6F2] text-[#111111] min-h-screen overflow-hidden relative">
       <div className="fixed inset-0 opacity-[0.035] pointer-events-none"><div className="absolute inset-0" style={{ backgroundImage: "linear-gradient(to right, #111 1px, transparent 1px), linear-gradient(to bottom, #111 1px, transparent 1px)", backgroundSize: "72px 72px" }} /></div>
       <section className="relative pt-[180px] pb-28 px-6 md:px-12">
         <div className="max-w-[1400px] mx-auto">

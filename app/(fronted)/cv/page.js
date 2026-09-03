@@ -78,7 +78,7 @@ export const metadata = {
 
 export default function CVPage() {
   return (
-    <div className="min-h-screen overflow-hidden bg-[#F7F6F2] text-[#111111]">
+    <div className="portfolio-page font-sans min-h-screen overflow-hidden bg-[#F7F6F2] text-[#111111]">
       <div className="fixed inset-0 pointer-events-none opacity-[0.035]">
         <div
           className="absolute inset-0"
