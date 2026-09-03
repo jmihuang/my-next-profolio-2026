@@ -5,6 +5,13 @@ const nextConfig = {
   // Products now read from a D1 binding, so this cannot remain a static export.
   images: {
     unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "lililala0112.github.io",
+        pathname: "/bank/**",
+      },
+    ],
   },
 };
 
