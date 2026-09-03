@@ -59,7 +59,7 @@ authOptions.providers = [
             return null;
           }
         } catch (error) {
-          console.error("[admin-auth] PBKDF2 verification error", error?.name || "UnknownError");
+          console.error("[admin-auth] PBKDF2 verification error", error?.message || error?.name || "UnknownError");
           return null;
         }
 

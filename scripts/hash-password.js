@@ -3,7 +3,7 @@ const { pbkdf2, randomBytes } = require("crypto");
 const { promisify } = require("util");
 
 const deriveKey = promisify(pbkdf2);
-const ITERATIONS = 600000;
+const ITERATIONS = 100000;
 const KEY_LENGTH = 32;
 
 function toBase64Url(value) {
