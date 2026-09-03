@@ -40,6 +40,14 @@ export default async function ProductsPage() {
           </div>
 
           <ProjectGallery projects={projects} categories={categories} />
+          <div className="mt-20 flex justify-center">
+            <Link
+              href="/projects-all"
+              className="inline-flex items-center rounded-full border border-black/15 px-8 py-4 text-sm tracking-[0.16em] uppercase text-black transition-colors hover:border-[#5FA391] hover:text-[#5FA391]"
+            >
+              View More Work →
+            </Link>
+          </div>
         </div>
       </section>
 

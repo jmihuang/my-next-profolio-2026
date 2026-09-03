@@ -98,7 +98,7 @@ export default function ProductForm({ product }) {
     <Form.Item label="Gallery 圖片（每行：path | alt）" name="galleryPaths"><TextArea rows={5} placeholder="/projects/example-1.png | Example screen" /></Form.Item>
     <Form.Item label="特殊案例 Key" name="caseStudyKey"><Input placeholder="例如 cleaning-doctor；一般作品可留空" /></Form.Item>
     <Form.Item label="發布狀態" name="status"><Select options={[{ value: "published", label: "Published" }, { value: "draft", label: "Draft" }]} /></Form.Item>
-    <Form.Item label="加入保密作品集" name="showInConfidentialPortfolio" valuePropName="checked" extra="Show in Confidential Portfolio。只有開啟後才會出現在 /projects-confidential；若同時設為 Draft，則不會出現在公開作品集或首頁，且 detail page 為 noindex。"><Switch checkedChildren="加入" unCheckedChildren="不加入" /></Form.Item>
+    <Form.Item label="加入完整作品集" name="showInConfidentialPortfolio" valuePropName="checked" extra="開啟後會出現在 /projects-all。若同時設為 Draft，則不會出現在公開作品集或首頁，detail page 仍可直接開啟，但不會被搜尋引擎收錄。"><Switch checkedChildren="加入" unCheckedChildren="不加入" /></Form.Item>
     </div>
     {(!product || activeTab === "content") ? <ProductSectionsEditor sections={sections} onChange={setSections} /> : null}
     <Form.Item><FormSubmit isSubmitting={pending} onReset={() => form.resetFields()} /></Form.Item>
