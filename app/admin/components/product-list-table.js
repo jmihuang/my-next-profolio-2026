@@ -43,6 +43,7 @@ export default function ProductListTable({ data }) {
     { title: "分類", dataIndex: "categories", key: "categories", render: (items) => items.map((item) => <Tag key={item}>{item}</Tag>) },
     { title: "封面", dataIndex: "image", key: "image", render: (image, record) => <Image src={image} alt={record.title} width={80} height={50} className="object-cover" /> },
     { title: "狀態", dataIndex: "status", key: "status", render: (status) => <Tag color={status === "published" ? "green" : "default"}>{status}</Tag> },
+    { title: "保密作品集", dataIndex: "show_in_confidential_portfolio", key: "confidential", render: (value) => <Tag color={value ? "blue" : "default"}>{value ? "加入" : "未加入"}</Tag> },
     { title: "首頁精選", key: "featured", render: (_, record) => {
       const isFeatured = record.featured_order !== null && record.featured_order !== undefined;
       return <Button type={isFeatured ? "primary" : "default"} icon={isFeatured ? <PushpinFilled /> : <PushpinOutlined />} onClick={() => toggleFeatured(record.id)} disabled={!isFeatured && featuredCount >= 2}>{isFeatured ? `已置頂 ${record.featured_order}` : "置頂"}</Button>;

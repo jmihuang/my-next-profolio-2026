@@ -39,6 +39,7 @@ db.exec(`
     cover_image_path TEXT NOT NULL,
     case_study_key TEXT,
     status TEXT NOT NULL DEFAULT 'published',
+    show_in_confidential_portfolio INTEGER NOT NULL DEFAULT 0,
     published_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

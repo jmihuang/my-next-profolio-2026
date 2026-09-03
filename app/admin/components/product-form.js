@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button, Form, Input, Select, Tabs, Upload, message } from "antd";
+import { Button, Form, Input, Select, Switch, Tabs, Upload, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { createProductAction, updateProductAction } from "@/lib/actions";
 import FormSubmit from "@/components/form-submit";
@@ -80,6 +80,7 @@ export default function ProductForm({ product }) {
       galleryPaths: galleryText(product),
       caseStudyKey: product?.case_study_key,
       status: product?.status || "published",
+      showInConfidentialPortfolio: Boolean(product?.show_in_confidential_portfolio),
     }}
   >
     {product ? <Tabs activeKey={activeTab} onChange={setActiveTab} items={[{ key: "project", label: "專案資訊" }, { key: "content", label: "案例內容" }]} /> : null}
@@ -97,6 +98,7 @@ export default function ProductForm({ product }) {
     <Form.Item label="Gallery 圖片（每行：path | alt）" name="galleryPaths"><TextArea rows={5} placeholder="/projects/example-1.png | Example screen" /></Form.Item>
     <Form.Item label="特殊案例 Key" name="caseStudyKey"><Input placeholder="例如 cleaning-doctor；一般作品可留空" /></Form.Item>
     <Form.Item label="發布狀態" name="status"><Select options={[{ value: "published", label: "Published" }, { value: "draft", label: "Draft" }]} /></Form.Item>
+    <Form.Item label="加入保密作品集" name="showInConfidentialPortfolio" valuePropName="checked" extra="Show in Confidential Portfolio。開啟後，作品會出現在 /projects-confidential；若為 Draft，則不會出現在公開作品集或首頁，且 detail page 為 noindex。"><Switch checkedChildren="加入" unCheckedChildren="不加入" /></Form.Item>
     </div>
     {(!product || activeTab === "content") ? <ProductSectionsEditor sections={sections} onChange={setSections} /> : null}
     <Form.Item><FormSubmit isSubmitting={pending} onReset={() => form.resetFields()} /></Form.Item>

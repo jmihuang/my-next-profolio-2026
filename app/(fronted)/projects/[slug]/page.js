@@ -13,6 +13,7 @@ export async function generateMetadata({ params }) {
   return {
     title: `${project.title} | Jamie Huang`,
     description: project.summary,
+    robots: project.status === "published" ? undefined : { index: false, follow: false },
   };
 }
 
