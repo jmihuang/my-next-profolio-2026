@@ -38,6 +38,34 @@ body {
   font-family: var(--font-portfolio-serif);
 }
 
+/* Shared public-site CTA: black primary, quiet green outlined secondary. */
+.portfolio-cta {
+  display: inline-flex;
+  min-height: 62px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 0.9rem 3.5rem;
+  font-family: var(--font-portfolio-sans);
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.portfolio-cta:hover { transform: translateY(-1px); }
+.portfolio-cta-primary { background: #111111; color: #ffffff; }
+.portfolio-cta-primary:hover { background: #5FA391; }
+.portfolio-cta-secondary { border: 1px solid rgba(17, 17, 17, 0.13); color: #60786A; }
+.portfolio-cta-secondary:hover { border-color: #5FA391; color: #3D7F70; }
+
+@keyframes loading-bar {
+  0% { transform: translateX(-120%); }
+  50% { transform: translateX(120%); }
+  100% { transform: translateX(280%); }
+}
+
 /* 配合固定式 main header，避免內容貼在導覽列下 */
 .main-below-fixed-header {
   padding-top: 4.5rem;

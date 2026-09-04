@@ -86,8 +86,8 @@ export default function StyleGuidePage() {
             </div>
             <div className="rounded-[28px] border border-black/10 bg-white p-8 md:p-12">
               <div className="mb-12 flex flex-wrap gap-4">
-                <Link href="/projects" className="font-sans rounded-full bg-[#111111] px-7 py-4 text-sm uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#5FA391]">View Projects</Link>
-                <a href="mailto:jmispace@gmail.com" className="font-sans rounded-full border border-black/15 px-7 py-4 text-sm uppercase tracking-[0.15em] transition-colors hover:border-[#5FA391] hover:text-[#5FA391]">Start a conversation</a>
+                <Link href="/projects" className="portfolio-cta portfolio-cta-primary">View Projects</Link>
+                <a href="mailto:jmispace@gmail.com" className="portfolio-cta portfolio-cta-secondary">Start a conversation</a>
               </div>
               <div className="grid gap-6 md:grid-cols-2">
                 <article className="rounded-[24px] border border-black/10 bg-[#F7F6F2] p-7">

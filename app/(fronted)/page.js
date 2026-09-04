@@ -3,6 +3,7 @@ import Link from "next/link";
 import personalImg from "/app/assets/image/personal.jpg";
 import { profile } from "@/lib/profile";
 import { getFeaturedProducts } from "@/lib/products";
+import ContactCta from "@/components/contact-cta";
 
 export const dynamic = "force-dynamic";
 
@@ -55,7 +56,7 @@ export default async function Home() {
                 <div className="flex flex-wrap gap-5">
                   <Link
                     href="/projects"
-                    className="group border border-black/10 px-8 py-4 rounded-full bg-[#111111] text-white hover:bg-[#5FA391] transition-all duration-500"
+                    className="portfolio-cta portfolio-cta-primary"
                   >
                     <span className="tracking-[0.15em] text-sm uppercase">
                       View Projects
@@ -64,9 +65,9 @@ export default async function Home() {
 
                   <a
                     href={`mailto:${profile.email}`}
-                    className="group border border-black/10 px-8 py-4 rounded-full hover:border-[#5FA391] transition-all duration-500"
+                    className="portfolio-cta portfolio-cta-secondary"
                   >
-                    <span className="tracking-[0.15em] text-sm uppercase group-hover:text-[#5FA391]">
+                    <span>
                       Let&apos;s Work Together
                     </span>
                   </a>
@@ -294,51 +295,7 @@ export default async function Home() {
             </div>
           </section>
 
-          {/* Contact */}
-          <section id="contact" className="py-32 px-6 md:px-12">
-            <div className="max-w-5xl mx-auto text-center">
-              <div className="text-sm tracking-[0.2em] uppercase text-black/40 mb-8">
-                Contact
-              </div>
-
-              <h3 className="text-5xl md:text-7xl tracking-[-0.05em] leading-[1.05] font-light mb-10">
-                Let&apos;s build
-                <br />
-                something meaningful.
-              </h3>
-
-              <p className="text-black/55 text-lg leading-loose mb-14 max-w-2xl mx-auto">
-                如果你正在打造產品、服務或新的數位體驗，我很樂意一起釐清問題、規劃並實現。
-              </p>
-
-              <div className="flex flex-wrap justify-center gap-5">
-                <a
-                  href={`mailto:${profile.email}`}
-                  className="px-8 py-4 rounded-full bg-[#111111] text-white tracking-[0.15em] text-sm uppercase hover:bg-[#5FA391] transition-all duration-500"
-                >
-                  Email
-                </a>
-
-                <a
-                  href={profile.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="px-8 py-4 rounded-full border border-black/10 tracking-[0.15em] text-sm uppercase hover:border-[#5FA391] hover:text-[#5FA391] transition-all duration-500"
-                >
-                  LinkedIn
-                </a>
-
-                <a
-                  href={profile.portfolio}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="px-8 py-4 rounded-full border border-black/10 tracking-[0.15em] text-sm uppercase hover:border-[#5FA391] hover:text-[#5FA391] transition-all duration-500"
-                >
-                  Portfolio
-                </a>
-              </div>
-            </div>
-          </section>
+          <ContactCta id="contact" />
         </div>
       </section>
     </div>

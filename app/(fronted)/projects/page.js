@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ProjectGallery from "./project-gallery";
 import { getAllProducts, getProductCategories } from "@/lib/products";
+import ContactCta from "@/components/contact-cta";
 
 export const dynamic = "force-dynamic";
 
@@ -43,7 +44,7 @@ export default async function ProductsPage() {
           <div className="mt-20 flex justify-center">
             <Link
               href="/projects-all"
-              className="inline-flex items-center rounded-full border border-black/15 px-8 py-4 text-sm tracking-[0.16em] uppercase text-black transition-colors hover:border-[#5FA391] hover:text-[#5FA391]"
+              className="portfolio-cta portfolio-cta-secondary"
             >
               View More Work →
             </Link>
@@ -51,33 +52,7 @@ export default async function ProductsPage() {
         </div>
       </section>
 
-      <section className="relative py-40 px-6 md:px-12">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="text-sm tracking-[0.25em] uppercase text-black/35 mb-8">
-            Let&apos;s Build Something
-          </div>
-
-          <h2 className="text-[52px] md:text-[96px] leading-[1] tracking-[-0.06em] font-light mb-10">
-            Meaningful
-            <br />
-            digital experiences.
-          </h2>
-
-          <p className="max-w-2xl mx-auto text-black/55 text-lg leading-[2] mb-14">
-            如果你正在打造品牌、產品或新的數位體驗，
-            我很樂意一起參與規劃與實現。
-          </p>
-
-          <Link
-            href="/contacts"
-            className="inline-block group px-10 py-5 rounded-full bg-[#111111] text-white hover:bg-[#5FA391] transition-all duration-500"
-          >
-            <span className="tracking-[0.2em] uppercase text-sm group-hover:tracking-[0.24em] transition-all duration-500">
-              Contact Me
-            </span>
-          </Link>
-        </div>
-      </section>
+      <ContactCta />
     </div>
   );
 }

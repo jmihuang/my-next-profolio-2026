@@ -44,6 +44,20 @@ const items2 = [
       },
     ],
   },
+  {
+    key: "experience",
+    icon: <StarOutlined />,
+    label: "工作經歷",
+    children: [
+      { key: "/admin/experience", label: <Link href="/admin/experience">經歷列表</Link> },
+      { key: "/admin/experience/create", label: <Link href="/admin/experience/create">新增工作經歷</Link> },
+    ],
+  },
+  {
+    key: "/admin/contact-cta",
+    icon: <StarOutlined />,
+    label: <Link href="/admin/contact-cta">聯絡 CTA</Link>,
+  },
 ];
 
 export default function AdminLayout({ children }) {
