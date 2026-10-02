@@ -1,6 +1,7 @@
 import "@/app/globals.css";
 import "@/app/assets/materialize.css";
 import "@/app/assets/style.css";
+import Script from "next/script";
 import MainHeader from "@/components/main-header/main-header";
 import PageTransitionLoader from "@/components/page-transition-loader";
 
@@ -17,6 +18,18 @@ export default function FrontedLayout({ children }) {
   return (
     <html lang="zh-tw">
       <body>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-J2WHMQ4TD9"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-J2WHMQ4TD9');
+          `}
+        </Script>
         <PageTransitionLoader />
         <MainHeader />
         <main className="main-below-fixed-header">{children}</main>
