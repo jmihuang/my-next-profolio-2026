@@ -72,6 +72,7 @@ export default function ProductForm({ product }) {
       eyebrow: product?.eyebrow,
       role: product?.role,
       summary: product?.summary,
+      externalUrl: product?.external_url,
       cardTechnologyLine: product?.cardTechnologyLine,
       categories: product?.categories?.join(", "),
       technologies: product?.technologies?.join(", "),
@@ -88,6 +89,7 @@ export default function ProductForm({ product }) {
     <Form.Item label="作品名稱" name="title" rules={[{ required: true, message: "請輸入作品名稱" }]}><Input /></Form.Item>
     <Form.Item label="分類（以逗號分隔）" name="categories" rules={[{ required: true, message: "請輸入至少一個分類" }]}><Input placeholder="Product & Commerce, Design Systems" /></Form.Item>
     <Form.Item label="作品摘要" name="summary" rules={[{ required: true, message: "請輸入作品摘要" }]}><TextArea rows={4} /></Form.Item>
+    <Form.Item label="外部網站連結" name="externalUrl" rules={[{ type: "url", message: "請輸入有效的網址" }]} extra="填寫後才會在作品詳情摘要下方顯示「View website」按鈕。"><Input placeholder="https://example.com" /></Form.Item>
     <Form.Item label="Eyebrow" name="eyebrow"><Input /></Form.Item>
     <Form.Item label="角色" name="role"><Input /></Form.Item>
     <Form.Item label="技術摘要" name="cardTechnologyLine"><Input /></Form.Item>

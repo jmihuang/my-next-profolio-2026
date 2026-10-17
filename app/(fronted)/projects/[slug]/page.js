@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { getProductBySlug } from "@/lib/products";
 import CleaningDoctorCaseStudy from "../../../../components/cleaning-doctor/cleaning-doctor-case-study-v2";
 import ProductDetailSections, { ProductImageSection } from "@/components/products/product-detail-sections";
@@ -11,7 +11,7 @@ export async function generateMetadata({ params }) {
   const project = await getProductBySlug(params.slug);
   if (!project) return {};
   return {
-    title: `${project.title} | Jamie Huang`,
+    title: project.title,
     description: project.summary,
     robots: project.status === "published" ? undefined : { index: false, follow: false },
   };
@@ -137,6 +137,7 @@ function DesignSystemCaseStudy() {
 export default async function ProjectDetailPage({ params }) {
   const project = await getProductBySlug(params.slug);
   if (!project) notFound();
+  if (project.external_url) redirect(project.external_url);
 
   return (
     <div className="portfolio-page font-sans bg-[#F7F6F2] text-[#111111] min-h-screen overflow-hidden relative">
@@ -149,6 +150,7 @@ export default async function ProjectDetailPage({ params }) {
               <div className="text-sm tracking-[0.22em] uppercase text-[#5FA391] mb-6">{project.eyebrow}</div>
               <h1 className="text-5xl md:text-8xl tracking-[-0.06em] leading-[0.95] font-light mb-8">{project.title}</h1>
               <p className="text-xl leading-[1.8] text-black/60">{project.summary}</p>
+              {project.external_url ? <a href={project.external_url} target="_blank" rel="noreferrer" className="portfolio-cta portfolio-cta-primary mt-8">View website ↗</a> : null}
             </div>
             <div className="border-t border-black/10 pt-7">
               <div className="text-sm tracking-[0.18em] uppercase text-black/35 mb-3">Role</div>

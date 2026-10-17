@@ -16,6 +16,13 @@ function ProjectVisual({ project }) {
   );
 }
 
+function ProjectLink({ project, children }) {
+  const className = "block";
+  const ariaLabel = project.external_url ? `Visit ${project.title} website` : `View ${project.title} project`;
+  if (project.external_url) return <a href={project.external_url} target="_blank" rel="noreferrer" className={className} aria-label={ariaLabel}>{children}</a>;
+  return <Link href={`/projects/${project.slug}`} className={className} aria-label={ariaLabel}>{children}</Link>;
+}
+
 export default function ProjectGallery({ projects, categories }) {
   const [activeCategory, setActiveCategory] = useState("All");
   const visibleProjects = projects.filter(
@@ -48,11 +55,7 @@ export default function ProjectGallery({ projects, categories }) {
       <div className="grid md:grid-cols-2 gap-x-12 gap-y-20">
         {visibleProjects.map((project) => (
           <article key={project.slug} className="group">
-            <Link
-              href={`/projects/${project.slug}`}
-              className="block"
-              aria-label={`View ${project.title} project`}
-            >
+            <ProjectLink project={project}>
               <div className={`relative aspect-[4/3] ${project.coverBackground || "bg-[#ece9e4]"} mb-7 overflow-hidden`}>
                 <ProjectVisual project={project} />
                 <div
@@ -63,7 +66,7 @@ export default function ProjectGallery({ projects, categories }) {
                 <div className="absolute inset-x-0 bottom-0 z-30 pointer-events-none flex items-end gap-4 overflow-hidden px-6 md:px-9">
                   <div className="min-w-0 flex-1 [clip-path:inset(0_100%_0_0)] group-hover:[clip-path:inset(0_0_0_0)] transition-[clip-path] duration-700 ease-[cubic-bezier(0.77,0,0.18,1)]">
                     <span className="block translate-y-[110%] group-hover:translate-y-[12%] font-serif text-[3.8rem] sm:text-[5.5rem] md:text-[clamp(5.5rem,8vw,11rem)] leading-[0.72] tracking-[-0.075em] text-transparent [-webkit-text-stroke:1.5px_#198f73] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                      Detail
+                      {project.external_url ? "Visit site" : "Detail"}
                     </span>
                   </div>
                   <svg
@@ -96,7 +99,7 @@ export default function ProjectGallery({ projects, categories }) {
                   {project.cardTechnologyLine}
                 </p>
               </div>
-            </Link>
+            </ProjectLink>
           </article>
         ))}
       </div>
