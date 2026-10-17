@@ -1,37 +1,64 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Jamie Huang Portfolio
 
-## Getting Started
+Next.js portfolio deployed to Cloudflare Workers with OpenNext. Production content is stored in the `jamie-portfolio-products` Cloudflare D1 database.
 
-First, run the development server:
+## Local development
+
+Use Node.js 22 before running project commands:
+
+```bash
+nvm use 22
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Production release
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Run this command to build for Cloudflare, apply pending production D1 migrations, then deploy the Worker:
 
-## Learn More
+```bash
+npm run cf:release
+```
 
-To learn more about Next.js, take a look at the following resources:
+The order is deliberate:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```text
+Cloudflare build succeeds
+        ↓
+Pending production D1 migrations are applied
+        ↓
+Worker is deployed
+        ↓
+Verify the live site
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+The command prompts before changing the production database. Review the listed migration names before confirming.
 
-## Deploy on Vercel
+### When a migration is required
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Required: adding or changing tables, columns, indexes, or initial database content.
+- Not required: changing UI, styles, static images, or normal content updates made through the admin interface.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# next-js-first-project
+Create a new sequential migration file for every database change, for example `migrations/0008_add_xxx.sql`. Never edit a migration that has already succeeded in production.
+
+### Useful commands
+
+```bash
+# See pending production migrations without applying them
+npx wrangler d1 migrations list jamie-portfolio-products --remote
+
+# Build only
+npm run cf:build
+
+# Apply only pending production migrations
+npm run cf:migrate:prod
+
+# Deploy an already-built Worker
+npm run cf:deploy:prod
+```

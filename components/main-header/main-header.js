@@ -63,7 +63,7 @@ const MainHeader = () => {
       <nav className={styles.bar}>
         {/* logo */}
 
-        <Link href="/" className={styles.logo}>
+        <Link href="/" className={styles.logo} data-analytics-event="navigation_click" data-analytics-label="Logo">
           <Image
             src={logoImg}
             alt="Jamie Studio"
@@ -85,6 +85,8 @@ const MainHeader = () => {
                 <Link
                   href={item.href}
                   className={active ? styles.desktopNavActive : ""}
+                  data-analytics-event="navigation_click"
+                  data-analytics-label={item.label}
                 >
                   {item.label}
                 </Link>
@@ -128,7 +130,7 @@ const MainHeader = () => {
                 key={item.href}
                 className={active ? styles.mobileItemActive : undefined}
               >
-                <Link href={item.href} onClick={() => setMenuOpen(false)}>
+                <Link href={item.href} onClick={() => setMenuOpen(false)} data-analytics-event="navigation_click" data-analytics-label={`Mobile ${item.label}`}>
                   {item.label}
                 </Link>
               </li>

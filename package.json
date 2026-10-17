@@ -9,6 +9,9 @@
     "lint": "next lint",
     "cf:build": "opennextjs-cloudflare build",
     "cf:preview": "opennextjs-cloudflare preview",
+    "cf:migrate:prod": "wrangler d1 migrations apply jamie-portfolio-products --remote",
+    "cf:deploy:prod": "wrangler deploy",
+    "cf:release": "npm run cf:build && npm run cf:migrate:prod && npm run cf:deploy:prod",
     "d1:migrate:local": "wrangler d1 migrations apply jamie-portfolio-products --local",
     "d1:verify:local": "wrangler d1 execute jamie-portfolio-products --local --command \"SELECT 'products' AS table_name, COUNT(*) AS row_count FROM products UNION ALL SELECT 'product_images', COUNT(*) FROM product_images UNION ALL SELECT 'product_sections', COUNT(*) FROM product_sections;\""
   },

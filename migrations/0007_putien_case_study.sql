@@ -23,17 +23,19 @@ INSERT INTO product_sections (product_id, sort_order, section_leading_title, sec
 ((SELECT id FROM products WHERE slug = 'putien-interior-design'), 6, 'Frontend development', 'From design to production.', '<pre><code>Website Planning\n        ↓\nUI Design\n        ↓\nResponsive Development\n        ↓\nSEO Implementation\n        ↓\nProduction</code></pre><p>負責將網站架構與 UI 設計落實為可使用的響應式網站，從規劃、設計到前端開發，讓資訊架構能在正式產品中被完整執行。</p>'),
 ((SELECT id FROM products WHERE slug = 'putien-interior-design'), 7, 'Result', 'A more complete digital presence.', '<p>正式上線後，蒲田從較單一的作品展示，建立出 <strong>Brand → Services → Projects → Articles → Contact</strong> 的完整數位品牌入口。</p><p>這個案例整合了 <strong>SEO Architecture + Website Structure + UI + Frontend</strong>，沒有以未驗證的流量、排名或轉換率數字作為成果主張。</p><p><strong>Designed, developed and launched.</strong></p><p><a href="https://www.putiendesign.com/" target="_blank" rel="noreferrer">Visit Putien Design →</a></p>');
 
+-- Keep these as individual INSERT ... SELECT statements. D1 rejected the
+-- previous UNION ALL derived table with "too many terms in compound SELECT".
 INSERT INTO product_images (product_id, section_id, path, alt, title, description, image_role, sort_order)
-SELECT p.id, s.id, v.path, v.alt, v.title, v.description, 'section', v.sort_order
-FROM products p
-JOIN product_sections s ON s.product_id = p.id
-JOIN (
-  SELECT 1 AS section_order, '/projects/putien-market-positioning.png' AS path, 'Putien Design market positioning diagram' AS alt, 'Brand positioning as a planning lens' AS title, 'This map expresses the positioning lens used in website planning; it is not presented as market statistics.' AS description, 0 AS sort_order
-  UNION ALL SELECT 2, '/projects/putien-seo-research-01.png', 'SEO research: localized combinations and trend considerations', 'Search research input 01', 'User-provided SEO research reference used to inform information classification.', 0
-  UNION ALL SELECT 2, '/projects/putien-seo-research-02.png', 'SEO research: keyword categories and suggested page placement', 'Search research input 02', 'Keyword types were mapped to likely page and information locations.', 1
-  UNION ALL SELECT 2, '/projects/putien-seo-research-03.png', 'SEO research: keyword pyramid and GEO question terms', 'Search research input 03', 'Search intent was considered in the website information hierarchy.', 2
-  UNION ALL SELECT 4, '/projects/putien-home.png', 'Putien Interior Design homepage', 'Homepage｜Brand → service → trust', 'The homepage establishes brand understanding before moving visitors toward work and contact.', 0
-  UNION ALL SELECT 4, '/projects/putien-projects.png', 'Putien Interior Design projects page', 'Projects｜Find a relevant case', 'Project classification helps visitors explore cases by their own space and needs.', 1
-  UNION ALL SELECT 5, '/projects/putien-workflow.png', 'Putien Interior Design workflow page', 'UI｜Information hierarchy in practice', 'The workflow page shows how complex information is presented in an approachable reading sequence.', 0
-) v ON v.section_order = s.sort_order
-WHERE p.slug = 'putien-interior-design';
+SELECT p.id, s.id, '/projects/putien-market-positioning.png', 'Putien Design market positioning diagram', 'Brand positioning as a planning lens', 'This map expresses the positioning lens used in website planning; it is not presented as market statistics.', 'section', 0 FROM products p JOIN product_sections s ON s.product_id = p.id WHERE p.slug = 'putien-interior-design' AND s.sort_order = 1;
+INSERT INTO product_images (product_id, section_id, path, alt, title, description, image_role, sort_order)
+SELECT p.id, s.id, '/projects/putien-seo-research-01.png', 'SEO research: localized combinations and trend considerations', 'Search research input 01', 'User-provided SEO research reference used to inform information classification.', 'section', 0 FROM products p JOIN product_sections s ON s.product_id = p.id WHERE p.slug = 'putien-interior-design' AND s.sort_order = 2;
+INSERT INTO product_images (product_id, section_id, path, alt, title, description, image_role, sort_order)
+SELECT p.id, s.id, '/projects/putien-seo-research-02.png', 'SEO research: keyword categories and suggested page placement', 'Search research input 02', 'Keyword types were mapped to likely page and information locations.', 'section', 1 FROM products p JOIN product_sections s ON s.product_id = p.id WHERE p.slug = 'putien-interior-design' AND s.sort_order = 2;
+INSERT INTO product_images (product_id, section_id, path, alt, title, description, image_role, sort_order)
+SELECT p.id, s.id, '/projects/putien-seo-research-03.png', 'SEO research: keyword pyramid and GEO question terms', 'Search research input 03', 'Search intent was considered in the website information hierarchy.', 'section', 2 FROM products p JOIN product_sections s ON s.product_id = p.id WHERE p.slug = 'putien-interior-design' AND s.sort_order = 2;
+INSERT INTO product_images (product_id, section_id, path, alt, title, description, image_role, sort_order)
+SELECT p.id, s.id, '/projects/putien-home.png', 'Putien Interior Design homepage', 'Homepage｜Brand → service → trust', 'The homepage establishes brand understanding before moving visitors toward work and contact.', 'section', 0 FROM products p JOIN product_sections s ON s.product_id = p.id WHERE p.slug = 'putien-interior-design' AND s.sort_order = 4;
+INSERT INTO product_images (product_id, section_id, path, alt, title, description, image_role, sort_order)
+SELECT p.id, s.id, '/projects/putien-projects.png', 'Putien Interior Design projects page', 'Projects｜Find a relevant case', 'Project classification helps visitors explore cases by their own space and needs.', 'section', 1 FROM products p JOIN product_sections s ON s.product_id = p.id WHERE p.slug = 'putien-interior-design' AND s.sort_order = 4;
+INSERT INTO product_images (product_id, section_id, path, alt, title, description, image_role, sort_order)
+SELECT p.id, s.id, '/projects/putien-workflow.png', 'Putien Interior Design workflow page', 'UI｜Information hierarchy in practice', 'The workflow page shows how complex information is presented in an approachable reading sequence.', 'section', 0 FROM products p JOIN product_sections s ON s.product_id = p.id WHERE p.slug = 'putien-interior-design' AND s.sort_order = 5;

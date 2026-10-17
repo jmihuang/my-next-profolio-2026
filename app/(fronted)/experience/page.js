@@ -1,7 +1,7 @@
 import CareerProfile from "../cv/page";
 
 export const metadata = {
-  title: "Experience | Jamie Huang",
+  title: "Experience",
   description: "Senior Product Designer · UX/UI × Product Design × Frontend.",
 };
 

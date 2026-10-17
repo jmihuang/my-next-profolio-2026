@@ -4,7 +4,7 @@ import { getMoreWorkProducts } from "@/lib/products";
 
 export const dynamic = "force-dynamic";
 export const metadata = {
-  title: "More Work | Jamie Huang",
+  title: "More Work",
   robots: { index: false, follow: false },
 };
 

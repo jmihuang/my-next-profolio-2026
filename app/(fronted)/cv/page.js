@@ -52,7 +52,7 @@ const community = [
 ];
 
 export const metadata = {
-  title: "CV | Jamie Huang",
+  title: "CV",
   description: "Senior Product Designer · UX/UI × Product Design × Frontend.",
 };
 

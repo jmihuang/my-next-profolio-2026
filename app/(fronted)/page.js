@@ -57,6 +57,8 @@ export default async function Home() {
                   <Link
                     href="/projects"
                     className="portfolio-cta portfolio-cta-primary"
+                    data-analytics-event="hero_projects_click"
+                    data-analytics-label="View Projects"
                   >
                     <span className="tracking-[0.15em] text-sm uppercase">
                       View Projects
@@ -66,6 +68,8 @@ export default async function Home() {
                   <a
                     href={`mailto:${profile.email}`}
                     className="portfolio-cta portfolio-cta-secondary"
+                    data-analytics-event="hero_contact_click"
+                    data-analytics-label="Let's Work Together"
                   >
                     <span>
                       Let&apos;s Work Together

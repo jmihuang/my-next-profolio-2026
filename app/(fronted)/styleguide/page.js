@@ -8,7 +8,7 @@ const COLORS = [
 ];
 
 export const metadata = {
-  title: "Style Guide | Jamie Huang",
+  title: "Style Guide",
   description: "Portfolio visual foundations and reusable interface patterns.",
 };
 
